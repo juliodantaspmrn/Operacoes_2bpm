@@ -308,12 +308,12 @@ const diaOk = diaSelecionado === '' || diaCSV === diaSelecionado;
             porDia[dia][local].forEach(p=>{
                 html+=`
                 <tr>
-                    <td data-label="Ordem">${p.ORDEM}</td>
-<td data-label="Graduação">${p['GRADUAÇÃO']}</td>
-<td data-label="Nome">${p['NOME COMPLETO']}</td>
-<td data-label="Matrícula">${mascaraMatricula(p['MATRÍCULA'])}</td>
-<td data-label="OPM">${p.OPM}</td>
-<td data-label="Tipo">${p['TIPO DE POLICIAMENTO']}</td>
+<td>${p.ORDEM}</td>
+ <td>${p['GRADUAÇÃO']}</td>
+    <td>${p['NOME COMPLETO']}</td>
+    <td>${mascaraMatricula(p['MATRÍCULA'])}</td>
+    <td>${p.OPM}</td>
+    <td>${p['TIPO DE POLICIAMENTO']}</td>
                 </tr>`;
             });
 
@@ -334,5 +334,6 @@ const diaOk = diaSelecionado === '' || diaCSV === diaSelecionado;
 
 </body>
 </html>
+
 
 
