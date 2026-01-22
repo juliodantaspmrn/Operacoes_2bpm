@@ -134,6 +134,66 @@ footer{
     table{
         font-size: 13px;
     }
+        @media (max-width: 768px){
+
+    /* Oculta apenas OPM no celular */
+    th:nth-child(5),
+    td:nth-child(5){
+        display: none;
+    }
+
+    /* Compactação geral */
+    table{
+        width: 100%;
+        table-layout: fixed;
+        font-size: 12px;
+    }
+
+    th, td{
+        padding: 5px 4px;
+        word-break: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+
+    /* Ordem bem estreita */
+    th:nth-child(1),
+    td:nth-child(1){
+        width: 36px;
+        text-align: center;
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+
+    /* Graduação compacta */
+    th:nth-child(2),
+    td:nth-child(2){
+        width: 58px;
+        text-align: center;
+    }
+
+    /* Nome ocupa o que sobrar */
+    th:nth-child(3),
+    td:nth-child(3){
+        width: auto;
+    }
+
+    /* Matrícula mais curta */
+    th:nth-child(4),
+    td:nth-child(4){
+        width: 78px;
+        font-size: 11px;
+        text-align: center;
+    }
+
+    /* Tipo compacto */
+    th:nth-child(6),
+    td:nth-child(6){
+        width: 70px;
+        font-size: 11px;
+        text-transform: uppercase;
+        text-align: center;
+    }
 </style>
 </head>
 
@@ -315,6 +375,7 @@ const diaOk = diaSelecionado === '' || diaCSV === diaSelecionado;
 
 </body>
 </html>
+
 
 
 
