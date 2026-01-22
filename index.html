@@ -1,52 +1,299 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Denúncia Segura - 2º BPM</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+<header>
+    <img src="brasao_pmrn.png" alt="Brasão 2º BPM" class="brasao">
+    <h1>2º BPM – Efetivo Extra Reforço Carnaval 2026</h1>
+    <p>Tibau • Grossos • Gov. Dix-Sept Rosado</p>
+</header>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    .brasao{
+    width: 110px;
+    max-width: 35%;
+    margin-bottom: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (max-width: 600px){
+    .brasao{
+        width: 85px;
+    }
+}
+
+    .filtros-dia{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+.filtros-dia button{
+    padding:6px 12px;
+    border:1px solid #0f172a;
+    background:#fff;
+    color:#0f172a;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:13px;
+}
+.filtros-dia button:hover{
+    background:#0f172a;
+    color:#fff;
+}
+.filtros-dia button.ativo{
+    background:#0f172a;
+    color:#fff;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f4f6f8;
+    margin:0;
+    color:#1f2937;
+}
+header{
+    background:#0f172a;
+    color:#fff;
+    padding:20px;
+    text-align:center;
+}
+header h1{margin:0;font-size:22px;}
+header p{margin-top:5px;font-size:14px;opacity:.9;}
+.container{max-width:1200px;margin:auto;padding:20px;}
+.controls{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+input[type=file]{
+    padding:6px;
+}
+.search{
+    flex:1;
+    position:relative;
+}
+.search input{
+    width:100%;
+    padding:10px 38px 10px 10px;
+    font-size:15px;
+    border-radius:6px;
+    border:1px solid #cbd5e1;
+}
+.search span{
+    position:absolute;
+    right:12px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:18px;
+    color:#64748b;
+}
+.day{
+    background:#fff;
+    border-radius:8px;
+    padding:15px;
+    margin-bottom:30px;
+    box-shadow:0 2px 5px rgba(0,0,0,.05);
+}
+.day h2{
+    margin:0 0 10px;
+    border-bottom:2px solid #0f172a;
+    padding-bottom:5px;
+}
+.city{margin-top:15px;}
+.city h3{margin-bottom:8px;color:#0f172a;}
+table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+}
+th,td{
+    border:1px solid #e5e7eb;
+    padding:7px;
+    text-align:left;
+}
+th{background:#f1f5f9;}
+footer{
+    text-align:center;
+    font-size:12px;
+    color:#64748b;
+    margin:30px 0 10px;
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-  <div class="header">
-   <div class="shield">
-  <img src="brasao_pmrn.png" alt="Brasão PMRN">
+    <div class="controls">
+
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Buscar por nome ou matrícula">
+            <span>🔍</span>
+        </div>
+        
+    </div>
+<div class="filtros-dia">
+    <button class="ativo" onclick="filtrarDia('', this)">Todos</button>
+    <button onclick="filtrarDia('13', this)">Dia 13</button>
+    <button onclick="filtrarDia('14', this)">Dia 14</button>
+    <button onclick="filtrarDia('15', this)">Dia 15</button>
+    <button onclick="filtrarDia('16', this)">Dia 16</button>
+    <button onclick="filtrarDia('17', this)">Dia 17</button>
+    <button onclick="filtrarDia('18', this)">Dia 18</button>
 </div>
-    <h1>DENÚNCIA SEGURA</h1>
-    <p>2º BATALHÃO • PMRN</p>
-  </div>
 
-  <div class="alert">
-    <strong>Emergência em tempo real?</strong><br>
-    Não utilize este canal. Ligue <strong>190</strong> imediatamente.
-    <a href="tel:190" class="btn-red">LIGAR 190</a>
-  </div>
-
-  <h2>Escolha o Canal de Denúncia</h2>
-
-  <a class="card whatsapp" href="https://wa.me/5584981372303" target="_blank">
-    <strong>WhatsApp</strong>
-    <span>Contato direto com a equipe</span>
-  </a>
-
-  <a class="card form" href="formulario.html">
-    <strong>Formulário</strong>
-    <span>100% anônimo e sem identificação direta</span>
-  </a>
-
-  <div class="footer">
-    <span>Lei Federal</span>
-    <span>Anônimo</span>
-    <span>Sem Rastro</span>
-  </div>
-
+    <div id="conteudo"></div>
 </div>
+
+<footer>
+    PMRN • 2º BPM 
+</footer>
+
+<script>
+let dados = [];
+let diaSelecionado = '';
+
+
+fetch('./efetivo.csv')
+  .then(res => res.arrayBuffer())
+  .then(buffer => {
+      // força Latin-1 (igual FileReader antigo)
+      const decoder = new TextDecoder('iso-8859-1');
+      const text = decoder.decode(buffer);
+      parseCSV(text);
+  })
+  .catch(err => {
+      console.error(err);
+      document.getElementById('conteudo').innerHTML =
+        '<p style="color:red">Erro ao carregar o efetivo.</p>';
+  });
+
+document.getElementById('searchInput').addEventListener('input', render);
+
+function parseCSV(text){
+    // remove BOM e normaliza linhas
+    const linhas = text
+        .replace(/^\uFEFF/, '')
+        .split(/\r?\n/)
+        .filter(l => l.trim() !== '');
+
+    // detecta separador automaticamente
+    const linhaCabecalho = linhas[0];
+    let sep = ';';
+    if (linhaCabecalho.includes('\t')) sep = '\t';
+    else if (linhaCabecalho.includes(',')) sep = ',';
+
+    // remove cabeçalho
+    linhas.shift();
+
+    dados = linhas.map(l => {
+        const c = l.split(sep).map(v => v.trim());
+
+        return {
+            DIA: c[0] || '',
+            ORDEM: c[1] || '',
+            'GRADUAÇÃO': c[2] || '',
+            'NOME COMPLETO': c[3] || '',
+            'MATRÍCULA': c[4] || '',
+            OPM: c[5] || '',
+            'TIPO DE POLICIAMENTO': c[6] || '',
+            LOCAL: c[7] || ''
+        };
+    });
+
+    render();
+}
+
+
+function mascaraMatricula(mat){
+    if(!mat) return '';
+    const clean = mat.replace(/\D/g,'');
+    if(clean.length < 6) return mat;
+    return clean.substring(0,3)+'***'+clean.substring(6);
+}
+function filtrarDia(valor, botao){
+    // extrai apenas o DIA do botão (ex: "13.02" → "13")
+    diaSelecionado = valor ? valor.split('.')[0] : '';
+
+    document.querySelectorAll('.filtros-dia button')
+      .forEach(b => b.classList.remove('ativo'));
+
+    if(botao) botao.classList.add('ativo');
+
+    render();
+}
+
+
+function render(){
+    const filtro = document.getElementById('searchInput').value.toLowerCase();
+    const div = document.getElementById('conteudo');
+    div.innerHTML = '';
+
+    const filtrado = dados.filter(d => {
+    const nomeOk =
+        d['NOME COMPLETO'].toLowerCase().includes(filtro) ||
+        d['MATRÍCULA'].includes(filtro);
+
+    const diaCSV = (d.DIA || '').match(/\d+/)?.[0] || '';
+const diaOk = diaSelecionado === '' || diaCSV === diaSelecionado;
+
+    return nomeOk && diaOk;
+   });
+
+
+    const porDia = {};
+
+    filtrado.forEach(d=>{
+        if(!porDia[d.DIA]) porDia[d.DIA]={};
+        if(!porDia[d.DIA][d.LOCAL]) porDia[d.DIA][d.LOCAL]=[];
+        porDia[d.DIA][d.LOCAL].push(d);
+    });
+
+    Object.keys(porDia).forEach(dia=>{
+        const blocoDia = document.createElement('div');
+        blocoDia.className='day';
+        blocoDia.innerHTML=`<h2>📅 Dia ${dia}</h2>`;
+
+        Object.keys(porDia[dia]).forEach(local=>{
+            let html = `
+                <div class="city">
+                <h3>📍 ${local}</h3>
+                <table>
+                <tr>
+                    <th>Ordem</th>
+                    <th>Graduação</th>
+                    <th>Nome</th>
+                    <th>Matrícula</th>
+                    <th>OPM</th>
+                    <th>Tipo</th>
+                </tr>
+            `;
+
+            porDia[dia][local].forEach(p=>{
+                html+=`
+                <tr>
+                    <td>${p.ORDEM}</td>
+                    <td>${p['GRADUAÇÃO']}</td>
+                    <td>${p['NOME COMPLETO']}</td>
+                    <td>${mascaraMatricula(p['MATRÍCULA'])}</td>
+                    <td>${p.OPM}</td>
+                    <td>${p['TIPO DE POLICIAMENTO']}</td>
+                </tr>`;
+            });
+
+            html+=`</table></div>`;
+            blocoDia.innerHTML+=html;
+        });
+
+        div.appendChild(blocoDia);
+    });
+}
+
+
+</script>
 
 </body>
 </html>
-
-
-
