@@ -202,7 +202,7 @@
 let dados = [];
 let diaSelecionado = '';
 
-fetch('./efetivo.csv')
+fetch('./efetivo2.csv')
     .then(res => res.text()) // UTF-8
     .then(text => parseCSV(text))
     .catch(err => {
