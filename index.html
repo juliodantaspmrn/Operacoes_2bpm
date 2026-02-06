@@ -14,7 +14,7 @@ body{
 }
 
 /* ===== LOGIN ===== */
-.acesso-overlay{
+#acesso{
     position:fixed;
     inset:0;
     background:#0f172a;
@@ -30,7 +30,10 @@ body{
     width:320px;
     text-align:center;
 }
-.acesso-box h2{margin-bottom:15px;color:#0f172a}
+.acesso-box h2{
+    margin-bottom:14px;
+    color:#0f172a;
+}
 .acesso-box input{
     width:100%;
     padding:10px;
@@ -47,7 +50,11 @@ body{
     border-radius:6px;
     cursor:pointer;
 }
-#acessoErro{color:#dc2626;font-size:13px;margin-top:6px}
+#acessoErro{
+    color:#dc2626;
+    font-size:13px;
+    margin-top:6px;
+}
 
 /* ===== SITE ===== */
 header{
@@ -56,10 +63,20 @@ header{
     padding:20px;
     text-align:center;
 }
-.brasao{width:110px;margin-bottom:10px}
-.container{max-width:1200px;margin:auto;padding:20px}
+.brasao{
+    width:110px;
+    margin-bottom:10px;
+}
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
 
-.search{position:relative;margin-bottom:10px}
+.search{
+    position:relative;
+    margin-bottom:10px;
+}
 .search input{
     width:100%;
     padding:10px 38px 10px 10px;
@@ -97,7 +114,9 @@ header{
     margin-bottom:25px;
     border-radius:8px;
 }
-.city{margin-top:12px}
+.city{
+    margin-top:12px;
+}
 
 table{
     width:100%;
@@ -117,8 +136,14 @@ footer{
 }
 
 @media (max-width:768px){
-    table{font-size:11px;table-layout:fixed}
-    th,td{word-break:break-word;padding:4px}
+    table{
+        font-size:11px;
+        table-layout:fixed;
+    }
+    th,td{
+        word-break:break-word;
+        padding:4px;
+    }
 }
 </style>
 </head>
@@ -126,7 +151,7 @@ footer{
 <body>
 
 <!-- LOGIN -->
-<div id="acesso" class="acesso-overlay">
+<div id="acesso">
     <div class="acesso-box">
         <h2>Validação de Acesso Funcional</h2>
         <input id="nomeAcesso" placeholder="Primeiro nome">
@@ -134,7 +159,7 @@ footer{
         <button id="btnAcessar" onclick="validarAcesso()" disabled>Acessar</button>
         <div id="acessoErro"></div>
         <small style="font-size:11px;color:#64748b">
-            Consulta interna • LGPD • dados oficiais de escala
+            Consulta interna • Dados de escala oficial • LGPD
         </small>
     </div>
 </div>
@@ -171,120 +196,152 @@ Consulta interna de efetivo • Dados minimizados conforme LGPD
 
 <script>
 /* ===== UTIL ===== */
-function limpar(t){
-    return (t||'').replace(/\u00A0/g,' ').trim();
+function limpar(txt){
+    return (txt||'').replace(/\u00A0/g,' ').trim();
 }
-function normalizar(t){
-    return limpar(t).normalize('NFD')
+function normalizar(txt){
+    return limpar(txt)
+        .normalize('NFD')
         .replace(/[\u0300-\u036f]/g,'')
         .toUpperCase();
 }
 
-/* ===== DADOS ===== */
-let dados=[], acesso=[], diaSel='';
+/* ===== VARIÁVEIS ===== */
+let dados = [];
+let dadosAcesso = [];
+let diaSelecionado = '';
 
 /* ===== CSV ===== */
-fetch('./efetivo2.csv?v='+Date.now())
-.then(r=>r.text())
-.then(parseCSV);
+fetch('./efetivo2.csv?v=' + Date.now())
+    .then(r => r.text())
+    .then(parseCSV);
 
-function parseCSV(txt){
-    const linhas = txt.replace(/^\uFEFF/,'')
-        .split(/\r?\n/).filter(l=>l.trim());
+function parseCSV(text){
+    const linhas = text.replace(/^\uFEFF/,'')
+        .split(/\r?\n/)
+        .filter(l => l.trim() !== '');
 
-    const sep = linhas[0].includes(';')?';':
-                linhas[0].includes(',')?',':'\t';
+    const sep = linhas[0].includes(';') ? ';' :
+                linhas[0].includes(',') ? ',' : '\t';
 
-    const cab = linhas.shift().split(sep)
-        .map(h=>normalizar(h));
+    const headers = linhas.shift()
+        .split(sep)
+        .map(h => normalizar(h));
 
-    dados = linhas.map(l=>{
-        const v=l.split(sep).map(limpar);
-        const o={};
-        cab.forEach((h,i)=>o[h]=v[i]||'');
+    dados = linhas.map(l => {
+        const valores = l.split(sep).map(limpar);
+        const obj = {};
+        headers.forEach((h,i) => obj[h] = valores[i] || '');
+
         return {
-            DIA:o['DIA'],
-            ORDEM:o['ORDEM'],
-            GRAD:o['GRADUAÇÃO'],
-            NOME:o['NOME COMPLETO'],
-            MAT:o['MATRÍCULA'],
-            OPM:o['OPM'],
-            TIPO:o['TIPO DE POLICIAMENTO'],
-            LOCAL:o['LOCAL']
+            DIA: obj['DIA'],
+            ORDEM: obj['ORDEM'],
+            GRAD: obj['GRADUAÇÃO'],
+            NOME: obj['NOME COMPLETO'],
+            MAT: obj['MATRÍCULA'],
+            OPM: obj['OPM'],
+            TIPO: obj['TIPO DE POLICIAMENTO'],
+            LOCAL: obj['LOCAL']
         };
     });
 
-    acesso = dados.map(d=>({
-        nome:normalizar(d.NOME).split(' ')[0],
-        mat:d.MAT.replace(/\D/g,'')
+    dadosAcesso = dados.map(d => ({
+        nome: normalizar(d.NOME).split(' ')[0],
+        mat: d.MAT.replace(/\D/g,'')
     }));
 
-    document.getElementById('btnAcessar').disabled=false;
+    document.getElementById('btnAcessar').disabled = false;
     render();
 }
 
 /* ===== LOGIN ===== */
 function validarAcesso(){
-    if(!acesso.length){
-        acessoErro.innerText='Aguarde carregamento.';
+    if(!dadosAcesso.length){
+        acessoErro.innerText = 'Aguarde o carregamento da escala.';
         return;
     }
-    const n=normalizar(nomeAcesso.value);
-    const m=matAcesso.value.replace(/\D/g,'');
-    const ok=acesso.some(p=>p.nome===n && p.mat===m);
-    if(ok) acesso.style.display='none';
-    else acessoErro.innerText='Dados não localizados na escala.';
+
+    const nome = normalizar(nomeAcesso.value);
+    const mat = matAcesso.value.replace(/\D/g,'');
+
+    const ok = dadosAcesso.some(p => p.nome === nome && p.mat === mat);
+
+    if(ok){
+        document.getElementById('acesso').style.display = 'none';
+    }else{
+        acessoErro.innerText = 'Dados não localizados na escala.';
+    }
 }
 
 /* ===== FILTROS ===== */
-searchInput.addEventListener('input',render);
-function filtrarDia(d,b){
-    diaSel=d;
+searchInput.addEventListener('input', render);
+
+function filtrarDia(dia, botao){
+    diaSelecionado = dia;
     document.querySelectorAll('.filtros-dia button')
-        .forEach(x=>x.classList.remove('ativo'));
-    b.classList.add('ativo');
+        .forEach(b => b.classList.remove('ativo'));
+    botao.classList.add('ativo');
     render();
 }
 
 /* ===== RENDER ===== */
 function render(){
-    const f=normalizar(searchInput.value);
-    conteudo.innerHTML='';
-    const fil=dados.filter(d=>{
-        const nomeOk=normalizar(d.NOME).includes(f) || d.MAT.includes(f);
-        const dia=(d.DIA.match(/\d+/)||[''])[0];
-        return nomeOk && (!diaSel || dia===diaSel);
+    const filtro = normalizar(searchInput.value);
+    conteudo.innerHTML = '';
+
+    const filtrado = dados.filter(d => {
+        const nomeOk =
+            normalizar(d.NOME).includes(filtro) ||
+            d.MAT.includes(filtro);
+
+        const diaCSV = (d.DIA.match(/\d+/) || [''])[0];
+        const diaOk = !diaSelecionado || diaCSV === diaSelecionado;
+
+        return nomeOk && diaOk;
     });
 
-    const mapa={};
-    fil.forEach(d=>{
-        mapa[d.DIA]??={};
-        mapa[d.DIA][d.LOCAL]??=[];
+    const mapa = {};
+    filtrado.forEach(d => {
+        mapa[d.DIA] ??= {};
+        mapa[d.DIA][d.LOCAL] ??= [];
         mapa[d.DIA][d.LOCAL].push(d);
     });
 
     for(const dia in mapa){
-        const bloco=document.createElement('div');
-        bloco.className='day';
-        bloco.innerHTML=`<h3>📅 Dia ${dia}</h3>`;
-        for(const loc in mapa[dia]){
-            let h=`<div class="city"><h4>📍 ${loc}</h4>
-            <table><tr>
-            <th>Ord</th><th>Grad</th><th>Nome</th><th>Mat</th><th>OPM</th><th>Tipo</th>
+        const bloco = document.createElement('div');
+        bloco.className = 'day';
+        bloco.innerHTML = `<h3>📅 Dia ${dia}</h3>`;
+
+        for(const local in mapa[dia]){
+            let html = `
+            <div class="city">
+            <h4>📍 ${local}</h4>
+            <table>
+            <tr>
+                <th>Ord</th>
+                <th>Grad</th>
+                <th>Nome</th>
+                <th>Mat</th>
+                <th>OPM</th>
+                <th>Tipo</th>
             </tr>`;
-            mapa[dia][loc].forEach(p=>{
-                h+=`<tr>
-                <td>${p.ORDEM}</td>
-                <td>${p.GRAD}</td>
-                <td>${p.NOME}</td>
-                <td>${p.MAT.replace(/\d(?=\d{4})/g,'*')}</td>
-                <td>${p.OPM}</td>
-                <td>${p.TIPO}</td>
+
+            mapa[dia][local].forEach(p => {
+                html += `
+                <tr>
+                    <td>${p.ORDEM}</td>
+                    <td>${p.GRAD}</td>
+                    <td>${p.NOME}</td>
+                    <td>${p.MAT.replace(/\d(?=\d{4})/g,'*')}</td>
+                    <td>${p.OPM}</td>
+                    <td>${p.TIPO}</td>
                 </tr>`;
             });
-            h+='</table></div>';
-            bloco.innerHTML+=h;
+
+            html += '</table></div>';
+            bloco.innerHTML += html;
         }
+
         conteudo.appendChild(bloco);
     }
 }
