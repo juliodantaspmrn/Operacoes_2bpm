@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,8 @@ body{
     margin:0;
     color:#1f2937;
 }
+
+/* HEADER */
 header{
     background:#0f172a;
     color:#fff;
@@ -24,54 +27,130 @@ header{
     display:block;
     margin:auto;
 }
+header h1{
+    margin:0;
+    font-size:22px;
+}
+header p{
+    margin-top:5px;
+    font-size:14px;
+    opacity:.9;
+}
+
+/* CONTAINER */
 .container{
     max-width:1200px;
     margin:auto;
     padding:20px;
 }
+
+/* BUSCA */
+.controls{
+    display:flex;
+    margin-bottom:15px;
+}
+.search{
+    flex:1;
+    position:relative;
+}
 .search input{
     width:100%;
-    padding:10px;
+    padding:10px 38px 10px 10px;
+    font-size:15px;
     border-radius:6px;
     border:1px solid #cbd5e1;
 }
+.search span{
+    position:absolute;
+    right:12px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:18px;
+    color:#64748b;
+}
+
+/* FILTROS */
 .filtros-dia{
     display:flex;
-    gap:6px;
+    gap:8px;
     flex-wrap:wrap;
-    margin:15px 0;
+    margin-bottom:20px;
 }
 .filtros-dia button{
     padding:6px 12px;
     border:1px solid #0f172a;
     background:#fff;
+    color:#0f172a;
+    border-radius:5px;
     cursor:pointer;
+    font-size:13px;
 }
-.filtros-dia button.ativo{
+.filtros-dia button.ativo,
+.filtros-dia button:hover{
     background:#0f172a;
     color:#fff;
 }
+
+/* BLOCOS */
 .day{
     background:#fff;
-    padding:15px;
-    margin-bottom:25px;
     border-radius:8px;
+    padding:15px;
+    margin-bottom:30px;
+    box-shadow:0 2px 5px rgba(0,0,0,.05);
 }
+.day h2{
+    margin:0 0 10px;
+    border-bottom:2px solid #0f172a;
+    padding-bottom:5px;
+}
+.city{
+    margin-top:15px;
+}
+.city h3{
+    margin-bottom:8px;
+    color:#0f172a;
+}
+
+/* TABELA */
 table{
     width:100%;
     border-collapse:collapse;
     font-size:14px;
 }
-th,td{
+th, td{
     border:1px solid #e5e7eb;
-    padding:6px;
+    padding:7px;
+    text-align:left;
 }
-th{background:#f1f5f9;}
+th{
+    background:#f1f5f9;
+}
+
+/* FOOTER */
 footer{
     text-align:center;
     font-size:12px;
     color:#64748b;
-    margin:20px;
+    margin:30px 0 10px;
+}
+
+/* MOBILE – IGUAL AO ORIGINAL */
+@media (max-width:768px){
+    table{
+        width:100%;
+        table-layout:fixed;
+        font-size:11px;
+    }
+    th, td{
+        padding:4px 3px;
+        word-break:break-word;
+        white-space:normal;
+    }
+    th:nth-child(1), td:nth-child(1){width:32px;text-align:center;}
+    th:nth-child(2), td:nth-child(2){width:55px;text-align:center;}
+    th:nth-child(4), td:nth-child(4){width:70px;text-align:center;font-size:10px;}
+    th:nth-child(6), td:nth-child(6){width:60px;text-align:center;white-space:nowrap;}
 }
 
 /* LOGIN */
@@ -86,14 +165,26 @@ footer{
 }
 #loginBox{
     background:#fff;
-    padding:25px;
+    padding:22px;
     width:320px;
-    border-radius:8px;
+    border-radius:10px;
+}
+#loginBox h2{
+    margin:0 0 5px;
+    font-size:18px;
+    text-align:center;
+}
+#loginBox p{
+    font-size:12px;
+    color:#475569;
+    text-align:center;
 }
 #loginBox input{
     width:100%;
-    padding:8px;
-    margin:6px 0;
+    padding:9px;
+    margin:8px 0;
+    border:1px solid #cbd5e1;
+    border-radius:5px;
 }
 #loginBox button{
     width:100%;
@@ -101,11 +192,15 @@ footer{
     background:#0f172a;
     color:#fff;
     border:none;
+    border-radius:5px;
+    cursor:pointer;
 }
 #erro{
     color:red;
     display:none;
     text-align:center;
+    margin-top:8px;
+    font-size:13px;
 }
 </style>
 </head>
@@ -115,94 +210,100 @@ footer{
 <!-- LOGIN -->
 <div id="login">
     <div id="loginBox">
-        <h3>Validação de Acesso Funcional</h3>
+        <h2>Operação Carnaval – 2º BPM</h2>
+        <p><strong>Validação de Acesso Funcional</strong></p>
+
         <input id="loginNome" placeholder="Primeiro nome">
-        <input id="loginMat" placeholder="Matrícula">
+        <input id="loginMat" placeholder="Matrícula completa">
+
         <button onclick="validar()">Acessar</button>
+
         <p id="erro">Dados não localizados na escala.</p>
+
+        <p style="margin-top:10px;font-size:11px;">
+            Consulta interna de efetivo, restrita ao serviço policial.
+            Dados tratados conforme a Lei nº 13.709/2018 (LGPD).
+        </p>
     </div>
 </div>
 
 <header>
-    <img src="brasao_pmrn.png" class="brasao">
-    <h2>2º BPM – Efetivo Extra Reforço Carnaval 2026</h2>
+    <img src="brasao_pmrn.png" alt="Brasão 2º BPM" class="brasao">
+    <h1>2º BPM – Efetivo Extra Reforço Carnaval 2026</h1>
     <p>Mossoró • Tibau • Grossos • Gov. Dix-Sept Rosado</p>
 </header>
 
 <div class="container">
-    <div class="search">
-        <input id="searchInput" placeholder="Buscar por nome ou matrícula">
+
+    <div class="controls">
+        <div class="search">
+            <input type="text" id="searchInput" placeholder="Buscar por nome ou matrícula">
+            <span>🔍</span>
+        </div>
     </div>
 
     <div class="filtros-dia">
-        <button class="ativo" onclick="filtrarDia('')">Todos</button>
-        <button onclick="filtrarDia('13')">Dia 13</button>
-        <button onclick="filtrarDia('14')">Dia 14</button>
-        <button onclick="filtrarDia('15')">Dia 15</button>
-        <button onclick="filtrarDia('16')">Dia 16</button>
-        <button onclick="filtrarDia('17')">Dia 17</button>
-        <button onclick="filtrarDia('18')">Dia 18</button>
+        <button class="ativo" onclick="filtrarDia('',this)">Todos</button>
+        <button onclick="filtrarDia('13',this)">Dia 13</button>
+        <button onclick="filtrarDia('14',this)">Dia 14</button>
+        <button onclick="filtrarDia('15',this)">Dia 15</button>
+        <button onclick="filtrarDia('16',this)">Dia 16</button>
+        <button onclick="filtrarDia('17',this)">Dia 17</button>
+        <button onclick="filtrarDia('18',this)">Dia 18</button>
     </div>
 
     <div id="conteudo"></div>
 </div>
 
 <footer>
-Consulta interna • Dados minimizados conforme LGPD
+    PMRN • 2º BPM • Operação Carnaval 2026
 </footer>
 
 <script>
-let dados = [];
-let diaSelecionado = '';
+let dados=[];
+let diaSelecionado='';
 
 function normalizar(t){
     return (t||'')
-        .replace(/\u00A0/g,' ')
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g,'')
-        .toUpperCase()
-        .trim();
+    .replace(/\u00A0/g,' ')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g,'')
+    .toUpperCase()
+    .trim();
 }
 
 fetch('./efetivo2.csv')
 .then(r=>r.text())
 .then(text=>{
-    const linhas = text.split(/\r?\n/).filter(l=>l.trim());
+    const linhas=text.replace(/^\uFEFF/,'').split(/\r?\n/).filter(l=>l.trim());
     linhas.shift();
-
-    dados = linhas.map(l=>{
-        const c = l.split(';');
-        return {
-            DIA:c[0], ORDEM:c[1], GRAD:c[2], NOME:c[3],
-            MAT:c[4], OPM:c[5], TIPO:c[6], LOCAL:c[7]
+    dados=linhas.map(l=>{
+        const c=l.split(';');
+        return{
+            DIA:c[0],ORDEM:c[1],GRAD:c[2],NOME:c[3],
+            MAT:c[4],OPM:c[5],TIPO:c[6],LOCAL:c[7]
         };
     });
     render();
 });
 
 function validar(){
-    const nome = normalizar(document.getElementById('loginNome').value).split(' ')[0];
-    const mat  = document.getElementById('loginMat').value.replace(/\D/g,'');
-
-    const ok = dados.some(d=>{
-        return normalizar(d.NOME).split(' ')[0] === nome &&
-               d.MAT.replace(/\D/g,'') === mat;
+    const nome=normalizar(loginNome.value).split(' ')[0];
+    const mat=loginMat.value.replace(/\D/g,'');
+    const ok=dados.some(d=>{
+        return normalizar(d.NOME).split(' ')[0]===nome &&
+               d.MAT.replace(/\D/g,'')===mat;
     });
-
-    if(ok){
-        document.getElementById('login').remove();
-    }else{
-        document.getElementById('erro').style.display='block';
-    }
+    if(ok) login.remove();
+    else erro.style.display='block';
 }
 
-document.getElementById('searchInput').addEventListener('input',render);
+searchInput.addEventListener('input',render);
 
-function filtrarDia(d){
-    diaSelecionado=d;
-    document.querySelectorAll('.filtros-dia button')
-        .forEach(b=>b.classList.remove('ativo'));
-    event.target.classList.add('ativo');
+function filtrarDia(v,b){
+    diaSelecionado=v;
+    document.querySelectorAll('.filtros-dia button').forEach(x=>x.classList.remove('ativo'));
+    b.classList.add('ativo');
     render();
 }
 
@@ -212,42 +313,33 @@ function mascara(m){
 }
 
 function render(){
-    const f=document.getElementById('searchInput').value.toLowerCase();
-    const div=document.getElementById('conteudo');
-    div.innerHTML='';
-
+    const f=searchInput.value.toLowerCase();
+    conteudo.innerHTML='';
     const fil=dados.filter(d=>{
-        const diaOk=!diaSelecionado||d.DIA.includes(diaSelecionado);
-        const nomeOk=d.NOME.toLowerCase().includes(f)||d.MAT.includes(f);
-        return diaOk&&nomeOk;
+        return (!diaSelecionado||d.DIA.includes(diaSelecionado)) &&
+        (d.NOME.toLowerCase().includes(f)||d.MAT.includes(f));
     });
-
     const mapa={};
     fil.forEach(d=>{
         mapa[d.DIA]=mapa[d.DIA]||{};
         mapa[d.DIA][d.LOCAL]=mapa[d.DIA][d.LOCAL]||[];
         mapa[d.DIA][d.LOCAL].push(d);
     });
-
     for(const dia in mapa){
-        let h=`<div class="day"><h3>Dia ${dia}</h3>`;
+        let h=`<div class="day"><h2>📅 Dia ${dia}</h2>`;
         for(const loc in mapa[dia]){
-            h+=`<h4>${loc}</h4><table>
-            <tr><th>Ord</th><th>Grad</th><th>Nome</th><th>Mat</th><th>OPM</th><th>Tipo</th></tr>`;
+            h+=`<div class="city"><h3>📍 ${loc}</h3><table>
+            <tr><th>Ord.</th><th>Grad.</th><th>Nome</th><th>Mat.</th><th>OPM</th><th>Tipo</th></tr>`;
             mapa[dia][loc].forEach(p=>{
                 h+=`<tr>
-                <td>${p.ORDEM}</td>
-                <td>${p.GRAD}</td>
-                <td>${p.NOME}</td>
-                <td>${mascara(p.MAT)}</td>
-                <td>${p.OPM}</td>
-                <td>${p.TIPO}</td>
+                <td>${p.ORDEM}</td><td>${p.GRAD}</td><td>${p.NOME}</td>
+                <td>${mascara(p.MAT)}</td><td>${p.OPM}</td><td>${p.TIPO}</td>
                 </tr>`;
             });
-            h+=`</table>`;
+            h+=`</table></div>`;
         }
         h+=`</div>`;
-        div.innerHTML+=h;
+        conteudo.innerHTML+=h;
     }
 }
 </script>
