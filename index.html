@@ -14,6 +14,70 @@
             color:#1f2937;
         }
 
+        /* ====== TELA DE VALIDAÇÃO ====== */
+        .acesso-overlay{
+            position: fixed;
+            inset: 0;
+            background:#0f172a;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            z-index:9999;
+        }
+
+        .acesso-box{
+            background:#fff;
+            padding:24px;
+            border-radius:8px;
+            width:320px;
+            text-align:center;
+            box-shadow:0 10px 25px rgba(0,0,0,.45);
+        }
+
+        .acesso-box h2{
+            margin-bottom:16px;
+            font-size:18px;
+            color:#0f172a;
+        }
+
+        .acesso-box input{
+            width:100%;
+            padding:10px;
+            margin-bottom:10px;
+            border-radius:6px;
+            border:1px solid #cbd5e1;
+            font-size:14px;
+        }
+
+        .acesso-box button{
+            width:100%;
+            padding:10px;
+            background:#0f172a;
+            color:#fff;
+            border:none;
+            border-radius:6px;
+            font-size:14px;
+            cursor:pointer;
+        }
+
+        .acesso-box button:hover{
+            background:#020617;
+        }
+
+        #erroAcesso{
+            color:#dc2626;
+            font-size:13px;
+            margin-top:8px;
+        }
+
+        .acesso-box small{
+            display:block;
+            margin-top:12px;
+            font-size:11px;
+            color:#64748b;
+        }
+
+        /* ====== SITE ====== */
         header{
             background:#0f172a;
             color:#fff;
@@ -144,18 +208,9 @@
             margin:30px 0 10px;
         }
 
-        /* RESPONSIVO */
         @media (max-width: 768px){
-            table{
-                font-size:11px;
-                table-layout:fixed;
-            }
-
-            th, td{
-                padding:4px 3px;
-                word-break:break-word;
-            }
-
+            table{ font-size:11px; table-layout:fixed; }
+            th, td{ padding:4px 3px; word-break:break-word; }
             th:nth-child(1), td:nth-child(1){ width:32px; text-align:center; }
             th:nth-child(2), td:nth-child(2){ width:55px; text-align:center; }
             th:nth-child(4), td:nth-child(4){ width:70px; text-align:center; font-size:10px; }
@@ -165,6 +220,25 @@
 </head>
 
 <body>
+
+<!-- ====== VALIDAÇÃO DE ACESSO ====== -->
+<div id="acesso" class="acesso-overlay">
+    <div class="acesso-box">
+        <h2>Validação de Acesso Funcional</h2>
+
+        <input type="text" id="nomeAcesso" placeholder="Primeiro nome">
+        <input type="text" id="matriculaAcesso" placeholder="Matrícula completa">
+
+        <button onclick="validarAcesso()">Acessar</button>
+
+        <p id="erroAcesso"></p>
+
+        <small>
+            Validação realizada exclusivamente com dados funcionais constantes em escala oficial,
+            para consulta interna, conforme a Lei nº 13.709/2018 (LGPD).
+        </small>
+    </div>
+</div>
 
 <header>
     <img src="brasao_pmrn.png" alt="Brasão 2º BPM" class="brasao">
@@ -199,75 +273,95 @@
 </footer>
 
 <script>
-let dados = [];
-let diaSelecionado = '';
-
-fetch('./efetivo2.csv')
-    .then(res => res.text()) // UTF-8
-    .then(text => parseCSV(text))
-    .catch(err => {
-        console.error(err);
-        document.getElementById('conteudo').innerHTML =
-            '<p style="color:red">Erro ao carregar o efetivo.</p>';
-    });
-
-document.getElementById('searchInput').addEventListener('input', render);
-
-function parseCSV(text){
-    const linhas = text
-        .replace(/^\uFEFF/, '')
-        .split(/\r?\n/)
-        .filter(l => l.trim() !== '');
-
-    let sep = ';';
-    if(linhas[0].includes(',')) sep = ',';
-    if(linhas[0].includes('\t')) sep = '\t';
-
-    linhas.shift();
-
-    dados = linhas.map(l => {
-        const c = l.split(sep).map(v => v.trim());
-        return {
-            DIA: c[0] || '',
-            ORDEM: c[1] || '',
-            GRADUACAO: c[2] || '',
-            NOME: c[3] || '',
-            MATRICULA: c[4] || '',
-            OPM: c[5] || '',
-            TIPO: c[6] || '',
-            LOCAL: c[7] || ''
-        };
-    });
-
-    render();
+/* ===== FUNÇÕES UTILITÁRIAS ===== */
+function normalizar(txt){
+    return txt
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g,'')
+        .toUpperCase()
+        .trim();
 }
 
 function mascaraMatricula(mat){
-    if(!mat) return '';
     const clean = mat.replace(/\D/g,'');
     return clean.length >= 6
         ? clean.substring(0,3) + '***' + clean.substring(6)
         : mat;
 }
 
+/* ===== DADOS ===== */
+let dados = [];
+let dadosAcesso = [];
+let diaSelecionado = '';
+
+fetch('./efetivo2.csv?v=' + Date.now())
+    .then(res => res.text())
+    .then(text => {
+        const linhas = text.replace(/^\uFEFF/,'').split(/\r?\n/).filter(l => l.trim());
+        let sep = ';';
+        if(linhas[0].includes(',')) sep = ',';
+        if(linhas[0].includes('\t')) sep = '\t';
+
+        linhas.shift();
+
+        dados = linhas.map(l => {
+            const c = l.split(sep).map(v => v.trim());
+            return {
+                DIA: c[0] || '',
+                ORDEM: c[1] || '',
+                GRADUACAO: c[2] || '',
+                NOME: c[3] || '',
+                MATRICULA: c[4] || '',
+                OPM: c[5] || '',
+                TIPO: c[6] || '',
+                LOCAL: c[7] || ''
+            };
+        });
+
+        dadosAcesso = dados.map(d => ({
+            primeiroNome: normalizar(d.NOME).split(' ')[0],
+            matricula: d.MATRICULA.replace(/\D/g,'')
+        }));
+
+        render();
+    });
+
+/* ===== VALIDAÇÃO ===== */
+function validarAcesso(){
+    const nome = normalizar(document.getElementById('nomeAcesso').value);
+    const matricula = document.getElementById('matriculaAcesso').value.replace(/\D/g,'');
+
+    const ok = dadosAcesso.some(p =>
+        p.primeiroNome === nome && p.matricula === matricula
+    );
+
+    if(ok){
+        document.getElementById('acesso').style.display = 'none';
+    } else {
+        document.getElementById('erroAcesso').innerText =
+            'Dados não localizados na escala.';
+    }
+}
+
+/* ===== FILTROS ===== */
+document.getElementById('searchInput').addEventListener('input', render);
+
 function filtrarDia(valor, botao){
     diaSelecionado = valor;
-
     document.querySelectorAll('.filtros-dia button')
         .forEach(b => b.classList.remove('ativo'));
-
     botao.classList.add('ativo');
     render();
 }
 
 function render(){
-    const filtro = document.getElementById('searchInput').value.toLowerCase();
+    const filtro = normalizar(document.getElementById('searchInput').value);
     const div = document.getElementById('conteudo');
     div.innerHTML = '';
 
     const filtrado = dados.filter(d => {
         const nomeOk =
-            d.NOME.toLowerCase().includes(filtro) ||
+            normalizar(d.NOME).includes(filtro) ||
             d.MATRICULA.includes(filtro);
 
         const diaCSV = (d.DIA.match(/\d+/) || [''])[0];
@@ -277,7 +371,6 @@ function render(){
     });
 
     const porDia = {};
-
     filtrado.forEach(d => {
         if(!porDia[d.DIA]) porDia[d.DIA] = {};
         if(!porDia[d.DIA][d.LOCAL]) porDia[d.DIA][d.LOCAL] = [];
