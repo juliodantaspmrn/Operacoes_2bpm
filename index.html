@@ -13,109 +13,73 @@ body{
     color:#1f2937;
 }
 
-/* ===== LOGIN ===== */
-#acesso{
-    position:fixed;
-    inset:0;
-    background:#0f172a;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:9999;
-}
-.acesso-box{
-    background:#fff;
-    padding:24px;
-    border-radius:8px;
-    width:320px;
-    text-align:center;
-}
-.acesso-box h2{
-    margin-bottom:14px;
-    color:#0f172a;
-}
-.acesso-box input{
-    width:100%;
-    padding:10px;
-    margin-bottom:10px;
-    border-radius:6px;
-    border:1px solid #cbd5e1;
-}
-.acesso-box button{
-    width:100%;
-    padding:10px;
-    background:#0f172a;
-    color:#fff;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
-}
-#acessoErro{
-    color:#dc2626;
-    font-size:13px;
-    margin-top:6px;
-}
-
-/* ===== SITE ===== */
 header{
     background:#0f172a;
     color:#fff;
     padding:20px;
     text-align:center;
 }
-.brasao{
-    width:110px;
-    margin-bottom:10px;
-}
+
 .container{
     max-width:1200px;
     margin:auto;
     padding:20px;
 }
 
-.search{
-    position:relative;
-    margin-bottom:10px;
-}
-.search input{
-    width:100%;
-    padding:10px 38px 10px 10px;
-    border-radius:6px;
-    border:1px solid #cbd5e1;
-}
-.search span{
-    position:absolute;
-    right:12px;
-    top:50%;
-    transform:translateY(-50%);
+.login{
+    max-width:360px;
+    margin:80px auto;
+    background:#fff;
+    padding:25px;
+    border-radius:8px;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
 }
 
-.filtros-dia{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
+.login h2{
+    text-align:center;
     margin-bottom:20px;
 }
-.filtros-dia button{
-    padding:6px 12px;
-    border:1px solid #0f172a;
-    background:#fff;
+
+.login input{
+    width:100%;
+    padding:10px;
+    margin-bottom:12px;
     border-radius:5px;
-    cursor:pointer;
+    border:1px solid #cbd5e1;
 }
-.filtros-dia button.ativo{
+
+.login button{
+    width:100%;
+    padding:10px;
     background:#0f172a;
     color:#fff;
+    border:none;
+    border-radius:5px;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.login p{
+    color:red;
+    text-align:center;
+    display:none;
+}
+
+.hidden{ display:none; }
+
+/* ======= TABELA ======= */
+
+.search input{
+    width:100%;
+    padding:10px;
+    margin-bottom:15px;
 }
 
 .day{
     background:#fff;
-    padding:15px;
-    margin-bottom:25px;
     border-radius:8px;
-}
-.city{
-    margin-top:12px;
+    padding:15px;
+    margin-bottom:30px;
 }
 
 table{
@@ -123,227 +87,119 @@ table{
     border-collapse:collapse;
     font-size:14px;
 }
-th,td{
+
+th, td{
     border:1px solid #e5e7eb;
-    padding:6px;
+    padding:7px;
 }
+th{ background:#f1f5f9; }
 
 footer{
     text-align:center;
     font-size:12px;
     color:#64748b;
-    margin:25px 0;
-}
-
-@media (max-width:768px){
-    table{
-        font-size:11px;
-        table-layout:fixed;
-    }
-    th,td{
-        word-break:break-word;
-        padding:4px;
-    }
+    margin:30px 0;
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<div id="acesso">
-    <div class="acesso-box">
-        <h2>Validação de Acesso Funcional</h2>
-        <input id="nomeAcesso" placeholder="Primeiro nome">
-        <input id="matAcesso" placeholder="Matrícula completa">
-        <button id="btnAcessar" onclick="validarAcesso()" disabled>Acessar</button>
-        <div id="acessoErro"></div>
-        <small style="font-size:11px;color:#64748b">
-            Consulta interna • Dados de escala oficial • LGPD
-        </small>
-    </div>
-</div>
-
 <header>
-    <img src="brasao_pmrn.png" class="brasao">
-    <h2>2º BPM – Efetivo Extra Carnaval 2026</h2>
-    <p>Mossoró • Tibau • Grossos • Gov. Dix-Sept Rosado</p>
+    <h1>2º BPM – Efetivo Extra Carnaval 2026</h1>
 </header>
 
-<div class="container">
-
-<div class="search">
-    <input id="searchInput" placeholder="Buscar por nome ou matrícula">
-    <span>🔍</span>
+<!-- LOGIN -->
+<div class="login" id="loginBox">
+    <h2>Acesso ao Efetivo</h2>
+    <input type="text" id="nomeLogin" placeholder="Primeiro nome">
+    <input type="text" id="matLogin" placeholder="Matrícula">
+    <button onclick="validarAcesso()">Acessar</button>
+    <p id="erroLogin">Nome ou matrícula inválidos</p>
 </div>
 
-<div class="filtros-dia">
-    <button class="ativo" onclick="filtrarDia('',this)">Todos</button>
-    <button onclick="filtrarDia('13',this)">Dia 13</button>
-    <button onclick="filtrarDia('14',this)">Dia 14</button>
-    <button onclick="filtrarDia('15',this)">Dia 15</button>
-    <button onclick="filtrarDia('16',this)">Dia 16</button>
-    <button onclick="filtrarDia('17',this)">Dia 17</button>
-    <button onclick="filtrarDia('18',this)">Dia 18</button>
-</div>
-
-<div id="conteudo"></div>
+<!-- CONTEÚDO -->
+<div class="container hidden" id="conteudoSite">
+    <div class="search">
+        <input type="text" id="searchInput" placeholder="Buscar por nome ou matrícula">
+    </div>
+    <div id="conteudo"></div>
 </div>
 
 <footer>
-Consulta interna de efetivo • Dados minimizados conforme LGPD
+    Consulta interna de efetivo • Dados minimizados conforme LGPD
 </footer>
 
 <script>
-/* ===== UTIL ===== */
-function limpar(txt){
-    return (txt||'').replace(/\u00A0/g,' ').trim();
-}
+let dados = [];
+let dadosAcesso = [];
+
+/* ===== NORMALIZA ===== */
 function normalizar(txt){
-    return limpar(txt)
+    return (txt||'')
+        .replace(/\u00A0/g,' ')
+        .replace(/\s+/g,' ')
+        .trim()
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g,'')
         .toUpperCase();
 }
 
-/* ===== VARIÁVEIS ===== */
-let dados = [];
-let dadosAcesso = [];
-let diaSelecionado = '';
+/* ===== CARREGA CSV ===== */
+fetch('./efetivo2.csv')
+.then(r => r.text())
+.then(text => {
+    const linhas = text.replace(/^\uFEFF/,'').split(/\r?\n/).filter(l=>l.trim());
+    linhas.shift();
 
-/* ===== CSV ===== */
-fetch('./efetivo2.csv?v=' + Date.now())
-    .then(r => r.text())
-    .then(parseCSV);
-
-function parseCSV(text){
-    const linhas = text.replace(/^\uFEFF/,'')
-        .split(/\r?\n/)
-        .filter(l => l.trim() !== '');
-
-    const sep = linhas[0].includes(';') ? ';' :
-                linhas[0].includes(',') ? ',' : '\t';
-
-    const headers = linhas.shift()
-        .split(sep)
-        .map(h => normalizar(h));
-
-    dados = linhas.map(l => {
-        const valores = l.split(sep).map(limpar);
-        const obj = {};
-        headers.forEach((h,i) => obj[h] = valores[i] || '');
-
+    dados = linhas.map(l=>{
+        const c = l.split(';');
         return {
-            DIA: obj['DIA'],
-            ORDEM: obj['ORDEM'],
-            GRAD: obj['GRADUAÇÃO'],
-            NOME: obj['NOME COMPLETO'],
-            MAT: obj['MATRÍCULA'],
-            OPM: obj['OPM'],
-            TIPO: obj['TIPO DE POLICIAMENTO'],
-            LOCAL: obj['LOCAL']
+            DIA:c[0], ORDEM:c[1], GRAD:c[2], NOME:c[3], MAT:c[4],
+            OPM:c[5], TIPO:c[6], LOCAL:c[7]
         };
     });
 
-    dadosAcesso = dados.map(d => ({
+    dadosAcesso = dados.map(d=>({
         nome: normalizar(d.NOME).split(' ')[0],
         mat: d.MAT.replace(/\D/g,'')
     }));
-
-    document.getElementById('btnAcessar').disabled = false;
-    render();
-}
+});
 
 /* ===== LOGIN ===== */
 function validarAcesso(){
-    if(!dadosAcesso.length){
-        acessoErro.innerText = 'Aguarde o carregamento da escala.';
-        return;
-    }
+    const nome = normalizar(document.getElementById('nomeLogin').value).split(' ')[0];
+    const mat = document.getElementById('matLogin').value.replace(/\D/g,'');
 
-    const nome = normalizar(nomeAcesso.value);
-    const mat = matAcesso.value.replace(/\D/g,'');
-
-    const ok = dadosAcesso.some(p => p.nome === nome && p.mat === mat);
+    const ok = dadosAcesso.some(d => d.nome === nome && d.mat === mat);
 
     if(ok){
-        document.getElementById('acesso').style.display = 'none';
+        document.getElementById('loginBox').classList.add('hidden');
+        document.getElementById('conteudoSite').classList.remove('hidden');
+        render();
     }else{
-        acessoErro.innerText = 'Dados não localizados na escala.';
+        document.getElementById('erroLogin').style.display='block';
     }
-}
-
-/* ===== FILTROS ===== */
-searchInput.addEventListener('input', render);
-
-function filtrarDia(dia, botao){
-    diaSelecionado = dia;
-    document.querySelectorAll('.filtros-dia button')
-        .forEach(b => b.classList.remove('ativo'));
-    botao.classList.add('ativo');
-    render();
 }
 
 /* ===== RENDER ===== */
+document.getElementById('searchInput').addEventListener('input', render);
+
 function render(){
-    const filtro = normalizar(searchInput.value);
-    conteudo.innerHTML = '';
+    const f = document.getElementById('searchInput').value.toLowerCase();
+    const div = document.getElementById('conteudo');
+    div.innerHTML='';
 
-    const filtrado = dados.filter(d => {
-        const nomeOk =
-            normalizar(d.NOME).includes(filtro) ||
-            d.MAT.includes(filtro);
-
-        const diaCSV = (d.DIA.match(/\d+/) || [''])[0];
-        const diaOk = !diaSelecionado || diaCSV === diaSelecionado;
-
-        return nomeOk && diaOk;
+    dados.filter(d =>
+        d.NOME.toLowerCase().includes(f) ||
+        d.MAT.includes(f)
+    ).forEach(d=>{
+        div.innerHTML += `
+        <div class="day">
+            <strong>${d.NOME}</strong><br>
+            ${d.GRAD} • ${d.OPM} • ${d.LOCAL}
+        </div>`;
     });
-
-    const mapa = {};
-    filtrado.forEach(d => {
-        mapa[d.DIA] ??= {};
-        mapa[d.DIA][d.LOCAL] ??= [];
-        mapa[d.DIA][d.LOCAL].push(d);
-    });
-
-    for(const dia in mapa){
-        const bloco = document.createElement('div');
-        bloco.className = 'day';
-        bloco.innerHTML = `<h3>📅 Dia ${dia}</h3>`;
-
-        for(const local in mapa[dia]){
-            let html = `
-            <div class="city">
-            <h4>📍 ${local}</h4>
-            <table>
-            <tr>
-                <th>Ord</th>
-                <th>Grad</th>
-                <th>Nome</th>
-                <th>Mat</th>
-                <th>OPM</th>
-                <th>Tipo</th>
-            </tr>`;
-
-            mapa[dia][local].forEach(p => {
-                html += `
-                <tr>
-                    <td>${p.ORDEM}</td>
-                    <td>${p.GRAD}</td>
-                    <td>${p.NOME}</td>
-                    <td>${p.MAT.replace(/\d(?=\d{4})/g,'*')}</td>
-                    <td>${p.OPM}</td>
-                    <td>${p.TIPO}</td>
-                </tr>`;
-            });
-
-            html += '</table></div>';
-            bloco.innerHTML += html;
-        }
-
-        conteudo.appendChild(bloco);
-    }
 }
 </script>
 
