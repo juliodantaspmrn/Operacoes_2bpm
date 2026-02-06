@@ -12,194 +12,243 @@ body{
     margin:0;
     color:#1f2937;
 }
-
 header{
     background:#0f172a;
     color:#fff;
     padding:20px;
     text-align:center;
 }
-
+.brasao{
+    width:110px;
+    margin-bottom:10px;
+    display:block;
+    margin:auto;
+}
 .container{
     max-width:1200px;
     margin:auto;
     padding:20px;
 }
-
-.login{
-    max-width:360px;
-    margin:80px auto;
-    background:#fff;
-    padding:25px;
-    border-radius:8px;
-    box-shadow:0 4px 10px rgba(0,0,0,.1);
-}
-
-.login h2{
-    text-align:center;
-    margin-bottom:20px;
-}
-
-.login input{
-    width:100%;
-    padding:10px;
-    margin-bottom:12px;
-    border-radius:5px;
-    border:1px solid #cbd5e1;
-}
-
-.login button{
-    width:100%;
-    padding:10px;
-    background:#0f172a;
-    color:#fff;
-    border:none;
-    border-radius:5px;
-    font-size:15px;
-    cursor:pointer;
-}
-
-.login p{
-    color:red;
-    text-align:center;
-    display:none;
-}
-
-.hidden{ display:none; }
-
-/* ======= TABELA ======= */
-
 .search input{
     width:100%;
     padding:10px;
-    margin-bottom:15px;
+    border-radius:6px;
+    border:1px solid #cbd5e1;
 }
-
+.filtros-dia{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    margin:15px 0;
+}
+.filtros-dia button{
+    padding:6px 12px;
+    border:1px solid #0f172a;
+    background:#fff;
+    cursor:pointer;
+}
+.filtros-dia button.ativo{
+    background:#0f172a;
+    color:#fff;
+}
 .day{
     background:#fff;
-    border-radius:8px;
     padding:15px;
-    margin-bottom:30px;
+    margin-bottom:25px;
+    border-radius:8px;
 }
-
 table{
     width:100%;
     border-collapse:collapse;
     font-size:14px;
 }
-
-th, td{
+th,td{
     border:1px solid #e5e7eb;
-    padding:7px;
+    padding:6px;
 }
-th{ background:#f1f5f9; }
-
+th{background:#f1f5f9;}
 footer{
     text-align:center;
     font-size:12px;
     color:#64748b;
-    margin:30px 0;
+    margin:20px;
+}
+
+/* LOGIN */
+#login{
+    position:fixed;
+    inset:0;
+    background:#0f172a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+#loginBox{
+    background:#fff;
+    padding:25px;
+    width:320px;
+    border-radius:8px;
+}
+#loginBox input{
+    width:100%;
+    padding:8px;
+    margin:6px 0;
+}
+#loginBox button{
+    width:100%;
+    padding:10px;
+    background:#0f172a;
+    color:#fff;
+    border:none;
+}
+#erro{
+    color:red;
+    display:none;
+    text-align:center;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <h1>2º BPM – Efetivo Extra Carnaval 2026</h1>
-</header>
-
 <!-- LOGIN -->
-<div class="login" id="loginBox">
-    <h2>Acesso ao Efetivo</h2>
-    <input type="text" id="nomeLogin" placeholder="Primeiro nome">
-    <input type="text" id="matLogin" placeholder="Matrícula">
-    <button onclick="validarAcesso()">Acessar</button>
-    <p id="erroLogin">Nome ou matrícula inválidos</p>
+<div id="login">
+    <div id="loginBox">
+        <h3>Validação de Acesso Funcional</h3>
+        <input id="loginNome" placeholder="Primeiro nome">
+        <input id="loginMat" placeholder="Matrícula">
+        <button onclick="validar()">Acessar</button>
+        <p id="erro">Dados não localizados na escala.</p>
+    </div>
 </div>
 
-<!-- CONTEÚDO -->
-<div class="container hidden" id="conteudoSite">
+<header>
+    <img src="brasao_pmrn.png" class="brasao">
+    <h2>2º BPM – Efetivo Extra Reforço Carnaval 2026</h2>
+    <p>Mossoró • Tibau • Grossos • Gov. Dix-Sept Rosado</p>
+</header>
+
+<div class="container">
     <div class="search">
-        <input type="text" id="searchInput" placeholder="Buscar por nome ou matrícula">
+        <input id="searchInput" placeholder="Buscar por nome ou matrícula">
     </div>
+
+    <div class="filtros-dia">
+        <button class="ativo" onclick="filtrarDia('')">Todos</button>
+        <button onclick="filtrarDia('13')">Dia 13</button>
+        <button onclick="filtrarDia('14')">Dia 14</button>
+        <button onclick="filtrarDia('15')">Dia 15</button>
+        <button onclick="filtrarDia('16')">Dia 16</button>
+        <button onclick="filtrarDia('17')">Dia 17</button>
+        <button onclick="filtrarDia('18')">Dia 18</button>
+    </div>
+
     <div id="conteudo"></div>
 </div>
 
 <footer>
-    Consulta interna de efetivo • Dados minimizados conforme LGPD
+Consulta interna • Dados minimizados conforme LGPD
 </footer>
 
 <script>
 let dados = [];
-let dadosAcesso = [];
+let diaSelecionado = '';
 
-/* ===== NORMALIZA ===== */
-function normalizar(txt){
-    return (txt||'')
+function normalizar(t){
+    return (t||'')
         .replace(/\u00A0/g,' ')
-        .replace(/\s+/g,' ')
-        .trim()
         .normalize('NFD')
         .replace(/[\u0300-\u036f]/g,'')
-        .toUpperCase();
+        .toUpperCase()
+        .trim();
 }
 
-/* ===== CARREGA CSV ===== */
 fetch('./efetivo2.csv')
-.then(r => r.text())
-.then(text => {
-    const linhas = text.replace(/^\uFEFF/,'').split(/\r?\n/).filter(l=>l.trim());
+.then(r=>r.text())
+.then(text=>{
+    const linhas = text.split(/\r?\n/).filter(l=>l.trim());
     linhas.shift();
 
     dados = linhas.map(l=>{
         const c = l.split(';');
         return {
-            DIA:c[0], ORDEM:c[1], GRAD:c[2], NOME:c[3], MAT:c[4],
-            OPM:c[5], TIPO:c[6], LOCAL:c[7]
+            DIA:c[0], ORDEM:c[1], GRAD:c[2], NOME:c[3],
+            MAT:c[4], OPM:c[5], TIPO:c[6], LOCAL:c[7]
         };
     });
-
-    dadosAcesso = dados.map(d=>({
-        nome: normalizar(d.NOME).split(' ')[0],
-        mat: d.MAT.replace(/\D/g,'')
-    }));
+    render();
 });
 
-/* ===== LOGIN ===== */
-function validarAcesso(){
-    const nome = normalizar(document.getElementById('nomeLogin').value).split(' ')[0];
-    const mat = document.getElementById('matLogin').value.replace(/\D/g,'');
+function validar(){
+    const nome = normalizar(document.getElementById('loginNome').value).split(' ')[0];
+    const mat  = document.getElementById('loginMat').value.replace(/\D/g,'');
 
-    const ok = dadosAcesso.some(d => d.nome === nome && d.mat === mat);
+    const ok = dados.some(d=>{
+        return normalizar(d.NOME).split(' ')[0] === nome &&
+               d.MAT.replace(/\D/g,'') === mat;
+    });
 
     if(ok){
-        document.getElementById('loginBox').classList.add('hidden');
-        document.getElementById('conteudoSite').classList.remove('hidden');
-        render();
+        document.getElementById('login').remove();
     }else{
-        document.getElementById('erroLogin').style.display='block';
+        document.getElementById('erro').style.display='block';
     }
 }
 
-/* ===== RENDER ===== */
-document.getElementById('searchInput').addEventListener('input', render);
+document.getElementById('searchInput').addEventListener('input',render);
+
+function filtrarDia(d){
+    diaSelecionado=d;
+    document.querySelectorAll('.filtros-dia button')
+        .forEach(b=>b.classList.remove('ativo'));
+    event.target.classList.add('ativo');
+    render();
+}
+
+function mascara(m){
+    const c=m.replace(/\D/g,'');
+    return c.substring(0,3)+'***'+c.substring(6);
+}
 
 function render(){
-    const f = document.getElementById('searchInput').value.toLowerCase();
-    const div = document.getElementById('conteudo');
+    const f=document.getElementById('searchInput').value.toLowerCase();
+    const div=document.getElementById('conteudo');
     div.innerHTML='';
 
-    dados.filter(d =>
-        d.NOME.toLowerCase().includes(f) ||
-        d.MAT.includes(f)
-    ).forEach(d=>{
-        div.innerHTML += `
-        <div class="day">
-            <strong>${d.NOME}</strong><br>
-            ${d.GRAD} • ${d.OPM} • ${d.LOCAL}
-        </div>`;
+    const fil=dados.filter(d=>{
+        const diaOk=!diaSelecionado||d.DIA.includes(diaSelecionado);
+        const nomeOk=d.NOME.toLowerCase().includes(f)||d.MAT.includes(f);
+        return diaOk&&nomeOk;
     });
+
+    const mapa={};
+    fil.forEach(d=>{
+        mapa[d.DIA]=mapa[d.DIA]||{};
+        mapa[d.DIA][d.LOCAL]=mapa[d.DIA][d.LOCAL]||[];
+        mapa[d.DIA][d.LOCAL].push(d);
+    });
+
+    for(const dia in mapa){
+        let h=`<div class="day"><h3>Dia ${dia}</h3>`;
+        for(const loc in mapa[dia]){
+            h+=`<h4>${loc}</h4><table>
+            <tr><th>Ord</th><th>Grad</th><th>Nome</th><th>Mat</th><th>OPM</th><th>Tipo</th></tr>`;
+            mapa[dia][loc].forEach(p=>{
+                h+=`<tr>
+                <td>${p.ORDEM}</td>
+                <td>${p.GRAD}</td>
+                <td>${p.NOME}</td>
+                <td>${mascara(p.MAT)}</td>
+                <td>${p.OPM}</td>
+                <td>${p.TIPO}</td>
+                </tr>`;
+            });
+            h+=`</table>`;
+        }
+        h+=`</div>`;
+        div.innerHTML+=h;
+    }
 }
 </script>
 
