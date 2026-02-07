@@ -137,21 +137,69 @@ footer{
 
 /* MOBILE – IGUAL AO ORIGINAL */
 @media (max-width:768px){
+
     table{
         width:100%;
-        table-layout:fixed;
+        table-layout:fixed;   /* ESSENCIAL */
         font-size:11px;
     }
+
     th, td{
         padding:4px 3px;
         word-break:break-word;
+        overflow-wrap:break-word;
+        white-space:normal;
+        hyphens:auto;
+    }
+
+    /* Ordem */
+    th:nth-child(1),
+    td:nth-child(1){
+        width:32px;
+        text-align:center;
+    }
+
+    /* Graduação */
+    th:nth-child(2),
+    td:nth-child(2){
+        width:58px;
+        text-align:center;
+        font-size:10px;
+    }
+
+    /* Nome (flexível, mas controlado) */
+    th:nth-child(3),
+    td:nth-child(3){
+        width:auto;
+    }
+
+    /* Matrícula */
+    th:nth-child(4),
+    td:nth-child(4){
+        width:70px;
+        text-align:center;
+        font-size:10px;
+        white-space:nowrap;
+    }
+
+    /* OPM */
+    th:nth-child(5),
+    td:nth-child(5){
+        width:52px;
+        text-align:center;
+        font-size:10px;
+    }
+
+    /* Tipo de policiamento */
+    th:nth-child(6),
+    td:nth-child(6){
+        width:62px;
+        text-align:center;
+        font-size:10px;
         white-space:normal;
     }
-    th:nth-child(1), td:nth-child(1){width:32px;text-align:center;}
-    th:nth-child(2), td:nth-child(2){width:55px;text-align:center;}
-    th:nth-child(4), td:nth-child(4){width:70px;text-align:center;font-size:10px;}
-    th:nth-child(6), td:nth-child(6){width:60px;text-align:center;white-space:nowrap;}
 }
+
 
 /* LOGIN */
 #login{
@@ -210,6 +258,9 @@ footer{
 <!-- LOGIN -->
 <div id="login">
     <div id="loginBox">
+        <img src="brasao_pmrn.png" alt="Brasão PMRN"
+     style="width:90px;display:block;margin:0 auto 10px;">
+
         <h2>Operação Carnaval – 2º BPM</h2>
         <p><strong>Validação de Acesso Funcional</strong></p>
 
@@ -262,6 +313,28 @@ footer{
 <script>
 let dados=[];
 let diaSelecionado='';
+
+function formatarNome(nome){
+    if(!nome) return '';
+
+    const partes = nome
+        .replace(/\u00A0/g,' ')
+        .trim()
+        .split(/\s+/)
+        .map(p =>
+            p.charAt(0).toUpperCase() +
+            p.slice(1).toLowerCase()
+        );
+
+    if(partes.length === 1) return partes[0];
+
+    const primeiro = partes[0];
+    const segundoInicial = partes[1].charAt(0).toUpperCase() + '.';
+    const resto = partes.slice(2).join(' ');
+
+    return [primeiro, segundoInicial, resto].filter(Boolean).join(' ');
+}
+
 
 function normalizar(t){
     return (t||'')
@@ -332,7 +405,9 @@ function render(){
             <tr><th>Ord.</th><th>Grad.</th><th>Nome</th><th>Mat.</th><th>OPM</th><th>Tipo</th></tr>`;
             mapa[dia][loc].forEach(p=>{
                 h+=`<tr>
-                <td>${p.ORDEM}</td><td>${p.GRAD}</td><td>${p.NOME}</td>
+                <td>${p.ORDEM}</td><td>${p.GRAD}</td><td>${formatarNome(p.NOME)}</td>
+
+
                 <td>${mascara(p.MAT)}</td><td>${p.OPM}</td><td>${p.TIPO}</td>
                 </tr>`;
             });
