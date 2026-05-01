@@ -10,7 +10,11 @@
 
 <style>
     /* MOBILE FIRST */
-
+button {
+    background: linear-gradient(90deg, #f7c948, #e0a800);
+    color: #fffdfd; /* cinza escuro elegante */
+    font-weight: 600;
+}
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
@@ -45,15 +49,15 @@ body {
 
 /* inputs maiores (melhor toque) */
 input {
-    width: 100%;
-    padding: 14px;
+    width: 90%;
+    padding: 10px;
     font-size: 16px;
 }
 
 /* botão principal grande */
 button {
-    width: 100%;
-    padding: 14px;
+    width: 90%;
+    padding: 10px;
     font-size: 15px;
 }
 
@@ -145,11 +149,11 @@ button {
 }
 
 .btn-util:hover {
-    background: #0b2235;
+    background: #fdfeff;
 }
 
 .btn-util small {
-    color: #9fb3c8;
+    color: #fcfafa;
 }
 
 .alerta {
@@ -213,7 +217,7 @@ label {
 }
 
 input {
-    width: 100%;
+    width: 97%;
     padding: 10px;
     margin: 5px 0 10px;
     border-radius: 8px;
@@ -231,6 +235,7 @@ button {
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
+    color: #ffffff !important; /* FORÇA A COR */
 }
 
 /* RESULTADO */
@@ -255,6 +260,7 @@ button {
     border: 1px solid #1e3a50;
     margin-bottom: 10px;
     font-size: 13px;
+    color:#f5f0f0
 }
 
 .destaque {
@@ -267,11 +273,13 @@ button {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
+    color:#fcfafa
 }
 
 @media (max-width: 380px) {
     .grid {
         grid-template-columns: 1fr;
+        color:#f5f0f0
     }
 }
 
@@ -542,7 +550,7 @@ function consultar() {
         p.horario === militar.horario
     );
 
-    let equipeHTML = `<div class="linha"><strong>EQUIPE ${militar.equipe}</strong></div>`;
+    let equipeHTML = `<div class="linha"><strong>EQUIPE - ${militar.equipe}</strong></div>`;
 
     equipe.forEach(p => {
         equipeHTML += `
