@@ -1,422 +1,573 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2º BPM – Efetivo Extra Carnaval 2026</title>
+<title>MCJ 2026</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <style>
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    background:#f4f6f8;
-    margin:0;
-    color:#1f2937;
+    /* MOBILE FIRST */
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: url("bg.png") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* overlay mais leve */
+.overlay {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,15,30,0.9));
+    min-height: 100vh;
+    padding: 10px;
+}
+
+/* container ocupa melhor a tela */
+.container {
+    width: 100%;
+    max-width: 100%;
+    background: rgba(5,20,35,0.95);
+    border-radius: 12px;
+    padding: 14px;
+}
+
+/* título */
+.header h1 {
+    font-size: 22px;
+}
+
+.header p {
+    font-size: 12px;
+}
+
+/* inputs maiores (melhor toque) */
+input {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+}
+
+/* botão principal grande */
+button {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+}
+
+/* resultado */
+.resultado {
+    margin-top: 12px;
+}
+
+/* militar */
+.militar-card {
+    font-size: 14px;
+    padding: 12px;
+}
+
+/* layout agora vertical */
+.grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* caixas */
+.box {
+    padding: 10px;
+}
+
+/* linhas */
+.linha {
+    font-size: 13px;
+}
+
+/* mapa maior */
+#mapa {
+    height: 220px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+/* botão mapa */
+.btn-mapa {
+    margin-top: 8px;
+    padding: 12px;
+    font-size: 14px;
+}
+
+/* utilidades */
+.grid-utils {
+    grid-template-columns: 1fr;
+}
+
+/* botões utilidades maiores */
+.btn-util {
+    padding: 12px;
+    font-size: 14px;
+}
+
+/* alerta */
+.alerta {
+    font-size: 13px;
+}
+.utilidades {
+    margin-top: 15px;
+}
+
+.util-title {
+    text-align: center;
+    color: #f7c948;
+    font-weight: bold;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.grid-utils {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.btn-util {
+    background: #071d2b;
+    border: 1px solid #1e3a50;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #f5f0f0;
+}
+
+.btn-util:hover {
+    background: #0b2235;
+}
+
+.btn-util small {
+    color: #9fb3c8;
+}
+
+.alerta {
+    margin-top: 10px;
+    background: rgba(247, 246, 245, 0.08);
+    border: 1px solid #f7c948;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    text-align: center;
+    color: #f7c948;
+}
+/* FUNDO */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: url("bg.png") no-repeat center center fixed;
+    background-size: cover;
+}
+
+/* OVERLAY */
+.overlay {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,15,30,0.9));
+    min-height: 100vh;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* CARD */
+.container {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(5,20,35,0.95);
+    border-radius: 14px;
+    padding: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
 }
 
 /* HEADER */
-header{
-    background:#0f172a;
-    color:#fff;
-    padding:20px;
-    text-align:center;
-}
-.brasao{
-    width:110px;
-    margin-bottom:10px;
-    display:block;
-    margin:auto;
-}
-header h1{
-    margin:0;
-    font-size:22px;
-}
-header p{
-    margin-top:5px;
-    font-size:14px;
-    opacity:.9;
+.header {
+    text-align: center;
+    margin-bottom: 12px;
 }
 
-/* CONTAINER */
-.container{
-    max-width:1200px;
-    margin:auto;
-    padding:20px;
+.header h1 {
+    color: #f7c948;
+    margin: 0;
 }
 
-/* BUSCA */
-.controls{
-    display:flex;
-    margin-bottom:15px;
-}
-.search{
-    flex:1;
-    position:relative;
-}
-.search input{
-    width:100%;
-    padding:10px 38px 10px 10px;
-    font-size:15px;
-    border-radius:6px;
-    border:1px solid #cbd5e1;
-}
-.search span{
-    position:absolute;
-    right:12px;
-    top:50%;
-    transform:translateY(-50%);
-    font-size:18px;
-    color:#64748b;
+.header p {
+    color: #9fb3c8;
+    font-size: 13px;
 }
 
-/* FILTROS */
-.filtros-dia{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-bottom:20px;
-}
-.filtros-dia button{
-    padding:6px 12px;
-    border:1px solid #0f172a;
-    background:#fff;
-    color:#0f172a;
-    border-radius:5px;
-    cursor:pointer;
-    font-size:13px;
-}
-.filtros-dia button.ativo,
-.filtros-dia button:hover{
-    background:#0f172a;
-    color:#fff;
+/* INPUT */
+label {
+    font-size: 12px;
+    color: #9fb3c8;
 }
 
-/* BLOCOS */
-.day{
-    background:#fff;
-    border-radius:8px;
-    padding:15px;
-    margin-bottom:30px;
-    box-shadow:0 2px 5px rgba(0,0,0,.05);
-}
-.day h2{
-    margin:0 0 10px;
-    border-bottom:2px solid #0f172a;
-    padding-bottom:5px;
-}
-.city{
-    margin-top:15px;
-}
-.city h3{
-    margin-bottom:8px;
-    color:#0f172a;
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px;
+    border-radius: 8px;
+    border: 1px solid #1e3a50;
+    background: #061826;
+    color: #fff;
 }
 
-/* TABELA */
-table{
-    width:100%;
-    border-collapse:collapse;
-    font-size:14px;
+/* BOTÃO */
+button {
+    width: 100%;
+    padding: 11px;
+    background: linear-gradient(90deg, #f7c948, #e0a800);
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
 }
-th, td{
-    border:1px solid #e5e7eb;
-    padding:7px;
-    text-align:left;
+
+/* RESULTADO */
+.resultado {
+    display: none;
+    margin-top: 12px;
 }
-th{
-    background:#f1f5f9;
+
+/* STATUS */
+.status {
+    text-align: center;
+    color: #00e676;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* CARD MILITAR */
+.militar-card {
+    background: #071d2b;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #1e3a50;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.destaque {
+    color: #f7c948;
+    font-weight: bold;
+}
+
+/* GRID ESCALA + EQUIPE */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+@media (max-width: 380px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* BOX */
+.box {
+    background: #071d2b;
+    border-radius: 10px;
+    border: 1px solid #1e3a50;
+    padding: 8px;
+}
+
+/* LINHAS */
+.linha {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 12px;
+    border-bottom: 1px solid #1e3a50;
+}
+
+.linha:last-child {
+    border-bottom: none;
+}
+
+.linha span {
+    color: #9fb3c8;
+}
+
+.linha strong {
+    color: #fff;
+}
+
+/* MAPA */
+#mapa {
+    height: 180px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+/* BOTÃO RESET */
+.reset {
+    margin-top: 10px;
+    padding: 10px;
+    background: transparent;
+    border: 1px solid #f7c948;
+    color: #f7c948;
+    border-radius: 8px;
 }
 
 /* FOOTER */
-footer{
-    text-align:center;
-    font-size:12px;
-    color:#64748b;
-    margin:30px 0 10px;
+.footer {
+    text-align: center;
+    font-size: 11px;
+    margin-top: 10px;
+    color: #8aa0b5;
+}
+.btn-mapa {
+    margin-top: 6px;
+    width: 100%;
+    padding: 8px;
+    font-size: 12px;
+    background: rgba(255,255,255,0.08);
+    color: #f7c948;
+    border: 1px solid #f7c948;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-/* MOBILE – IGUAL AO ORIGINAL */
-@media (max-width:768px){
-
-    table{
-        width:100%;
-        table-layout:fixed;   /* ESSENCIAL */
-        font-size:11px;
-    }
-
-    th, td{
-        padding:4px 3px;
-        word-break:break-word;
-        overflow-wrap:break-word;
-        white-space:normal;
-        hyphens:auto;
-    }
-
-    /* Ordem */
-    th:nth-child(1),
-    td:nth-child(1){
-        width:32px;
-        text-align:center;
-    }
-
-    /* Graduação */
-    th:nth-child(2),
-    td:nth-child(2){
-        width:58px;
-        text-align:center;
-        font-size:10px;
-    }
-
-    /* Nome (flexível, mas controlado) */
-    th:nth-child(3),
-    td:nth-child(3){
-        width:auto;
-    }
-
-    /* Matrícula */
-    th:nth-child(4),
-    td:nth-child(4){
-        width:70px;
-        text-align:center;
-        font-size:10px;
-        white-space:nowrap;
-    }
-
-    /* OPM */
-    th:nth-child(5),
-    td:nth-child(5){
-        width:52px;
-        text-align:center;
-        font-size:10px;
-    }
-
-    /* Tipo de policiamento */
-    th:nth-child(6),
-    td:nth-child(6){
-        width:62px;
-        text-align:center;
-        font-size:10px;
-        white-space:normal;
-    }
-}
-
-
-/* LOGIN */
-#login{
-    position:fixed;
-    inset:0;
-    background:#0f172a;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    z-index:9999;
-}
-#loginBox{
-    background:#fff;
-    padding:22px;
-    width:320px;
-    border-radius:10px;
-}
-#loginBox h2{
-    margin:0 0 5px;
-    font-size:18px;
-    text-align:center;
-}
-#loginBox p{
-    font-size:12px;
-    color:#475569;
-    text-align:center;
-}
-#loginBox input{
-    width:100%;
-    padding:9px;
-    margin:8px 0;
-    border:1px solid #cbd5e1;
-    border-radius:5px;
-}
-#loginBox button{
-    width:100%;
-    padding:10px;
-    background:#0f172a;
-    color:#fff;
-    border:none;
-    border-radius:5px;
-    cursor:pointer;
-}
-#erro{
-    color:red;
-    display:none;
-    text-align:center;
-    margin-top:8px;
-    font-size:13px;
+.btn-mapa:hover {
+    background: rgba(247,201,72,0.15);
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<div id="login">
-    <div id="loginBox">
-        <img src="brasao_pmrn.png" alt="Brasão PMRN"
-     style="width:90px;display:block;margin:0 auto 10px;">
-
-        <h2>Operação Carnaval – 2º BPM</h2>
-        <p><strong>Validação de Acesso Funcional</strong></p>
-
-        <input id="loginNome" placeholder="Primeiro nome">
-        <input id="loginMat" placeholder="Matrícula completa">
-
-        <button onclick="validar()">Acessar</button>
-
-        <p id="erro">Dados não localizados na escala.</p>
-
-        <p style="margin-top:10px;font-size:11px;">
-            Consulta interna de efetivo, restrita ao serviço policial.
-            Dados tratados conforme a Lei nº 13.709/2018 (LGPD).
-        </p>
-    </div>
-</div>
-
-<header>
-    <img src="brasao_pmrn.png" alt="Brasão 2º BPM" class="brasao">
-    <h1>2º BPM – Efetivo Extra Reforço Carnaval 2026</h1>
-    <p>Mossoró • Tibau • Grossos • Gov. Dix-Sept Rosado</p>
-</header>
-
+<div class="overlay">
 <div class="container">
 
-    <div class="controls">
-        <div class="search">
-            <input type="text" id="searchInput" placeholder="Buscar por nome ou matrícula">
-            <span>🔍</span>
+    <div class="header">
+        <h1>MCJ 2026</h1>
+        <p>Consulta de Escala Operacional</p>
+    </div>
+
+    <label>Primeiro Nome</label>
+    <input type="text" id="nome">
+
+    <label>Matrícula</label>
+    <input type="text" id="matricula">
+
+    <button onclick="consultar()">CONSULTAR</button>
+
+    <div class="resultado" id="resultado">
+
+        <div class="status">✔ ESCALA ENCONTRADA</div>
+
+        <div class="militar-card" id="militarInfo"></div>
+
+        <div class="grid">
+
+            <!-- ESCALA -->
+            <div class="box" id="escalaBox"></div>
+
+            <!-- EQUIPE -->
+            <div class="box" id="equipeBox"></div>
+
         </div>
+
+        <!-- MAPA EMBAIXO -->
+        <div id="mapa"></div>
+<button class="btn-mapa" onclick="abrirNoMaps()">
+    📍 Rota no Google Maps
+</button>
+        <button class="reset" onclick="resetar()">NOVA CONSULTA</button>
+
+    </div>
+    
+<div class="utilidades">
+
+<div class="util-title">INFORMAÇÕES ÚTEIS</div>
+
+    <div class="grid-utils">
+
+        <div class="btn-util" onclick="ligar190()">
+            📞 Acionar COPOM<br>
+            <small>190</small>
+        </div>
+
+        <div class="btn-util" onclick="abrirMapa('-5.1870,-37.3440')">
+            📄 Local Lavratura de TCO PM<br>
+            <small>NPJ Mossoró</small>
+        </div>
+
+        <div class="btn-util" onclick="abrirMapa('-5.1860,-37.3435')">
+            🚔 Local Base de Apoio PM<br>
+            <small>Praça Rio Branco</small>
+        </div>
+
+        <div class="btn-util" onclick="abrirDrive()">
+            🗺️ Mapa do Evento - Portões<br>
+            <small>Abrir no Drive</small>
+        </div>
+
     </div>
 
-    <div class="filtros-dia">
-        <button class="ativo" onclick="filtrarDia('',this)">Todos</button>
-        <button onclick="filtrarDia('13',this)">Dia 13</button>
-        <button onclick="filtrarDia('14',this)">Dia 14</button>
-        <button onclick="filtrarDia('15',this)">Dia 15</button>
-        <button onclick="filtrarDia('16',this)">Dia 16</button>
-        <button onclick="filtrarDia('17',this)">Dia 17</button>
-        <button onclick="filtrarDia('18',this)">Dia 18</button>
+    <div class="alerta">
+        ⚠️ LEMBRETE: Registrar as equipes no SINESP antes do serviço
     </div>
 
-    <div id="conteudo"></div>
+    <div class="footer">
+        Em caso de dúvida, procurar a 3ª Seção do 2º BPM.
+    </div>
+
 </div>
 
-<footer>
-    PMRN • 2º BPM • Operação Carnaval 2026
-</footer>
+</div>
+
+</div>
 
 <script>
-let dados=[];
-let diaSelecionado='';
-
-function formatarNome(nome){
-    if(!nome) return '';
-
-    const partes = nome
-        .replace(/\u00A0/g,' ')
-        .trim()
-        .split(/\s+/)
-        .map(p =>
-            p.charAt(0).toUpperCase() +
-            p.slice(1).toLowerCase()
-        );
-
-    if(partes.length === 1) return partes[0];
-
-    const primeiro = partes[0];
-    const segundoInicial = partes[1].charAt(0).toUpperCase() + '.';
-    const resto = partes.slice(2).join(' ');
-
-    return [primeiro, segundoInicial, resto].filter(Boolean).join(' ');
+function ligar190() {
+    window.location.href = "tel:190";
 }
 
-
-function normalizar(t){
-    return (t||'')
-    .replace(/\u00A0/g,' ')
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g,'')
-    .toUpperCase()
-    .trim();
+function abrirMapa(coords) {
+    window.open(`https://www.google.com/maps?q=${coords}`);
 }
 
-fetch('./efetivo2.csv')
-.then(r=>r.text())
-.then(text=>{
-    const linhas=text.replace(/^\uFEFF/,'').split(/\r?\n/).filter(l=>l.trim());
-    linhas.shift();
-    dados=linhas.map(l=>{
-        const c=l.split(';');
-        return{
-            DIA:c[0],ORDEM:c[1],GRAD:c[2],NOME:c[3],
-            MAT:c[4],OPM:c[5],TIPO:c[6],LOCAL:c[7]
-        };
-    });
-    render();
-});
-
-function validar(){
-    const nome=normalizar(loginNome.value).split(' ')[0];
-    const mat=loginMat.value.replace(/\D/g,'');
-    const ok=dados.some(d=>{
-        return normalizar(d.NOME).split(' ')[0]===nome &&
-               d.MAT.replace(/\D/g,'')===mat;
-    });
-    if(ok) login.remove();
-    else erro.style.display='block';
+function abrirDrive() {
+    window.open("COLOQUE_AQUI_SEU_LINK_DO_DRIVE");
 }
-
-searchInput.addEventListener('input',render);
-
-function filtrarDia(v,b){
-    diaSelecionado=v;
-    document.querySelectorAll('.filtros-dia button').forEach(x=>x.classList.remove('ativo'));
-    b.classList.add('ativo');
-    render();
-}
-
-function mascara(m){
-    const c=m.replace(/\D/g,'');
-    return c.substring(0,3)+'***'+c.substring(6);
-}
-
-function render(){
-    const f=searchInput.value.toLowerCase();
-    conteudo.innerHTML='';
-    const fil=dados.filter(d=>{
-        return (!diaSelecionado||d.DIA.includes(diaSelecionado)) &&
-        (d.NOME.toLowerCase().includes(f)||d.MAT.includes(f));
-    });
-    const mapa={};
-    fil.forEach(d=>{
-        mapa[d.DIA]=mapa[d.DIA]||{};
-        mapa[d.DIA][d.LOCAL]=mapa[d.DIA][d.LOCAL]||[];
-        mapa[d.DIA][d.LOCAL].push(d);
-    });
-    for(const dia in mapa){
-        let h=`<div class="day"><h2>📅 Dia ${dia}</h2>`;
-        for(const loc in mapa[dia]){
-            h+=`<div class="city"><h3>📍 ${loc}</h3><table>
-            <tr><th>Ord.</th><th>Grad.</th><th>Nome</th><th>Mat.</th><th>OPM</th><th>Tipo</th></tr>`;
-            mapa[dia][loc].forEach(p=>{
-                h+=`<tr>
-                <td>${p.ORDEM}</td><td>${p.GRAD}</td><td>${formatarNome(p.NOME)}</td>
-
-
-                <td>${mascara(p.MAT)}</td><td>${p.OPM}</td><td>${p.TIPO}</td>
-                </tr>`;
-            });
-            h+=`</table></div>`;
-        }
-        h+=`</div>`;
-        conteudo.innerHTML+=h;
+function abrirNoMaps() {
+    if (!destinoLat || !destinoLng) {
+        alert("Localização não disponível.");
+        return;
     }
+
+    window.open(`https://www.google.com/maps/dir/?api=1&destination=${destinoLat},${destinoLng}`);
 }
+let mapa;
+let banco = [];
+
+function carregarMapa(lat, lng, local) {
+
+    if (mapa) mapa.remove();
+
+    mapa = L.map('mapa');
+
+    const ponto = [lat, lng];
+
+    mapa.setView(ponto, 15); // ajuste de zoom automático melhor
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap & Carto'
+}).addTo(mapa);
+
+    L.marker(ponto)
+        .addTo(mapa)
+        .bindPopup(local)
+        .openPopup();
+}
+
+async function carregarCSV() {
+    const response = await fetch("dados.csv");
+    const texto = await response.text();
+
+    const linhas = texto.split(/\r?\n/).slice(1);
+
+    banco = linhas
+        .filter(linha => linha.trim() !== "")
+        .map(linha => {
+            const colunas = linha.split(",");
+
+            return {
+                nome: colunas[0].trim().toLowerCase(),
+                graduacao: colunas[1].trim(),
+                matricula: colunas[2].trim(),
+                local: colunas[3].trim(),
+                horario: colunas[4].trim(),
+                data: colunas[5].trim(),
+                modalidade: colunas[6].trim(),
+                equipe: colunas[7].trim(),
+                lat: parseFloat(colunas[8]),
+                lng: parseFloat(colunas[9])
+            };
+        });
+}
+function mascararMatricula(matricula) {
+    // Ex: 10001-1 → 10***-* 
+    return matricula.replace(/\d(?=\d{2}-\d)/g, "*");
+}
+function consultar() {
+
+    const nome = document.getElementById("nome").value.toLowerCase().trim();
+    const matricula = document.getElementById("matricula").value.trim();
+
+    const militar = banco.find(p =>
+    p.nome === nome && p.matricula === matricula
+);
+
+    if (!militar) {
+        alert("Dados não encontrados.");
+        return;
+    }
+
+    document.getElementById("resultado").style.display = "block";
+
+    document.getElementById("militarInfo").innerHTML = `
+    <strong>${militar.graduacao} ${militar.nome.toUpperCase()}</strong><br>
+    Matrícula: <span class="destaque">${mascararMatricula(militar.matricula)}</span><br>
+    Equipe: <span class="destaque">${militar.equipe}</span>
+    `;
+
+    // ESCALA
+    document.getElementById("escalaBox").innerHTML = `
+        <div class="linha"><span>LOCAL</span><strong>${militar.local}</strong></div>
+        <div class="linha"><span>HORÁRIO</span><strong class="destaque">${militar.horario}</strong></div>
+        <div class="linha"><span>DATA</span><strong>${militar.data}</strong></div>
+        <div class="linha"><span>MODALIDADE</span><strong>${militar.modalidade}</strong></div>
+    `;
+
+    // EQUIPE
+    const equipe = banco.filter(p =>
+        p.equipe === militar.equipe &&
+        p.local === militar.local &&
+        p.data === militar.data &&
+        p.horario === militar.horario
+    );
+
+    let equipeHTML = `<div class="linha"><strong>EQUIPE ${militar.equipe}</strong></div>`;
+
+    equipe.forEach(p => {
+        equipeHTML += `
+            <div class="linha">
+                <span>${p.nome.toUpperCase()}</span>
+                <strong>${mascararMatricula(p.matricula)}</strong>
+            </div>
+        `;
+    });
+
+    document.getElementById("equipeBox").innerHTML = equipeHTML;
+
+    carregarMapa(militar.lat, militar.lng, militar.local);
+destinoLat = militar.lat;
+destinoLng = militar.lng;
+}
+
+function resetar() {
+    document.getElementById("resultado").style.display = "none";
+    document.getElementById("nome").value = "";
+    document.getElementById("matricula").value = "";
+}
+
+carregarCSV();
+
 </script>
 
 </body>
