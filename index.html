@@ -1,369 +1,466 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MCJ 2026</title>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<title>MCJ 2026 - Painel Operacional</title>
 
 <style>
-    /* MOBILE FIRST */
-button {
-    background: linear-gradient(90deg, #f7c948, #e0a800);
-    color: #fffdfd; /* cinza escuro elegante */
-    font-weight: 600;
-}
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: url("bg.png") no-repeat center center fixed;
-    background-size: cover;
+    /* REMOVE BOLINHAS */
+
+ul{
+    list-style:none;
+    padding:0;
+    margin:0;
 }
 
-/* overlay mais leve */
-.overlay {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,15,30,0.9));
-    min-height: 100vh;
-    padding: 10px;
+li{
+    list-style:none;
+}
+/* HEADER CARD */
+
+.card-header{
+    border-bottom:1px solid #1e3a50;
+    padding-bottom:10px;
+    margin-bottom:12px;
 }
 
-/* container ocupa melhor a tela */
-.container {
-    width: 100%;
-    max-width: 100%;
-    background: rgba(5,20,35,0.95);
-    border-radius: 12px;
-    padding: 14px;
+.patrulha{
+    color:#f7c948;
+    font-size:22px;
+    font-weight:bold;
+    margin-bottom:6px;
 }
 
-/* título */
-.header h1 {
-    font-size: 22px;
+.top-info{
+    color:#cfd9e2;
+    font-size:13px;
+    margin-bottom:4px;
 }
 
-.header p {
-    font-size: 12px;
+/* MINI INFOS */
+
+.info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:8px;
+    margin-bottom:14px;
 }
 
-/* inputs maiores (melhor toque) */
-input {
-    width: 90%;
-    padding: 10px;
-    font-size: 16px;
+.mini-info{
+    background:#071d2b;
+    border:1px solid #1e3a50;
+    border-radius:10px;
+    padding:10px;
 }
 
-/* botão principal grande */
-button {
-    width: 90%;
-    padding: 10px;
-    font-size: 15px;
+.mini-info small{
+    color:#8ea4b8;
+    display:block;
+    margin-bottom:4px;
 }
 
-/* resultado */
-.resultado {
-    margin-top: 12px;
+.mini-info strong{
+    color:white;
+    font-size:13px;
 }
 
-/* militar */
-.militar-card {
-    font-size: 14px;
-    padding: 12px;
+/* POLICIAL */
+
+.policial{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#071d2b;
+    border:1px solid #1e3a50;
+    border-radius:10px;
+    padding:10px;
+    margin-bottom:8px;
 }
 
-/* layout agora vertical */
-.grid {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.policial span{
+    color:#f7c948;
+    font-size:12px;
 }
 
-/* caixas */
-.box {
-    padding: 10px;
+
+    /* UTILIDADES LOGIN */
+
+.login-utils{
+    margin-top:14px;
+}
+    .btn-sair{
+
+    width:100%;
+    margin-top:20px;
+    background:#8b0000;
+    color:white;
+    border:none;
+    border-radius:12px;
+    padding:14px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:14px;
+
+}
+    .polos-container{
+
+    display:flex;
+    gap:10px;
+    overflow:auto;
+    margin-bottom:15px;
+
 }
 
-/* linhas */
-.linha {
-    font-size: 13px;
+.btn-polo{
+
+    min-width:140px;
+    background:#071d2b;
+    color:#f7c948;
+    border:1px solid #1e3a50;
+    border-radius:12px;
+    padding:12px;
+    font-weight:bold;
+    cursor:pointer;
+    font-size:12px;
+
+}
+    .dias-container{
+
+    display:flex;
+    gap:10px;
+    overflow:auto;
+    margin-bottom:15px;
+
 }
 
-/* mapa maior */
-#mapa {
-    height: 220px;
-    margin-top: 10px;
-    border-radius: 10px;
+.btn-dia{
+
+    min-width:90px;
+    background:#dfe6ec;
+    color:#0066ff;
+    border:none;
+    border-radius:12px;
+    padding:14px;
+    font-weight:bold;
+    cursor:pointer;
+
 }
 
-/* botão mapa */
-.btn-mapa {
-    margin-top: 8px;
-    padding: 12px;
-    font-size: 14px;
+.card-equipe h2{
+
+    color:#324b68;
+    margin-bottom:12px;
+
 }
 
-/* utilidades */
-.grid-utils {
-    grid-template-columns: 1fr;
+.card-equipe ul{
+
+    margin-top:10px;
+    padding-left:25px;
+
 }
 
-/* botões utilidades maiores */
-.btn-util {
-    padding: 12px;
-    font-size: 14px;
+.card-equipe li{
+
+    margin-bottom:8px;
+
 }
 
-/* alerta */
-.alerta {
-    font-size: 13px;
-}
-.utilidades {
-    margin-top: 15px;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.util-title {
-    text-align: center;
-    color: #f7c948;
-    font-weight: bold;
-    margin-bottom: 8px;
-    font-size: 13px;
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:url("log.png") no-repeat center center fixed;
+    background-size:cover;
+    color:white;
 }
 
-.grid-utils {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
+.overlay{
+    min-height:100vh;
+    background:linear-gradient(rgba(0,0,0,0.55), rgba(0,15,30,0.92));
+    padding:12px;
 }
 
-.btn-util {
-    background: #071d2b;
-    border: 1px solid #1e3a50;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-    font-size: 12px;
-    cursor: pointer;
-    transition: 0.2s;
-    color: #f5f0f0;
-}
-
-.btn-util:hover {
-    background: #fdfeff;
-}
-
-.btn-util small {
-    color: #fcfafa;
-}
-
-.alerta {
-    margin-top: 10px;
-    background: rgba(247, 246, 245, 0.08);
-    border: 1px solid #f7c948;
-    padding: 8px;
-    border-radius: 8px;
-    font-size: 12px;
-    text-align: center;
-    color: #f7c948;
-}
-/* FUNDO */
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: url("bg.png") no-repeat center center fixed;
-    background-size: cover;
-}
-
-/* OVERLAY */
-.overlay {
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,15,30,0.9));
-    min-height: 100vh;
-    padding: 12px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-/* CARD */
-.container {
-    width: 100%;
-    max-width: 420px;
-    background: rgba(5,20,35,0.95);
-    border-radius: 14px;
-    padding: 16px;
-    border: 1px solid rgba(255,255,255,0.08);
+.container{
+    max-width:700px;
+    margin:auto;
+    background:rgba(5,20,35,0.95);
+    border-radius:14px;
+    padding:16px;
+    border:1px solid rgba(255,255,255,0.08);
 }
 
 /* HEADER */
-.header {
-    text-align: center;
-    margin-bottom: 12px;
+
+.header{
+    text-align:center;
+    margin-bottom:15px;
 }
 
-.header h1 {
-    color: #f7c948;
-    margin: 0;
+.header h1{
+    color:#f7c948;
+    font-size:26px;
 }
 
-.header p {
-    color: #9fb3c8;
-    font-size: 13px;
+.header p{
+    color:#9fb3c8;
+    font-size:13px;
+}
+
+/* BRASÕES */
+
+.logos{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-bottom:10px;
+}
+
+.logos img{
+    width:60px;
+    height:60px;
+    object-fit:contain;
 }
 
 /* INPUT */
-label {
-    font-size: 12px;
-    color: #9fb3c8;
+
+label{
+    font-size:12px;
+    color:#9fb3c8;
 }
 
-input {
-    width: 97%;
-    padding: 10px;
-    margin: 5px 0 10px;
-    border-radius: 8px;
-    border: 1px solid #1e3a50;
-    background: #061826;
-    color: #fff;
+input{
+    width:100%;
+    padding:12px;
+    margin-top:5px;
+    margin-bottom:12px;
+    border-radius:10px;
+    border:1px solid #1e3a50;
+    background:#061826;
+    color:white;
+    font-size:15px;
 }
 
-/* BOTÃO */
-button {
-    width: 100%;
-    padding: 11px;
-    background: linear-gradient(90deg, #f7c948, #e0a800);
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #ffffff !important; /* FORÇA A COR */
+/* BOTÕES */
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    background:linear-gradient(90deg,#f7c948,#e0a800);
+    color:white;
+    font-size:14px;
 }
 
 /* RESULTADO */
-.resultado {
-    display: none;
-    margin-top: 12px;
+
+.resultado{
+    display:none;
+    margin-top:15px;
 }
 
-/* STATUS */
-.status {
-    text-align: center;
-    color: #00e676;
-    font-weight: bold;
-    margin-bottom: 8px;
+.status{
+    text-align:center;
+    color:#00e676;
+    font-weight:bold;
+    margin-bottom:12px;
 }
 
 /* CARD MILITAR */
-.militar-card {
-    background: #071d2b;
-    border-radius: 10px;
-    padding: 10px;
-    border: 1px solid #1e3a50;
-    margin-bottom: 10px;
-    font-size: 13px;
-    color:#f5f0f0
+
+.militar-card{
+    background:#071d2b;
+    border-radius:12px;
+    padding:12px;
+    border:1px solid #1e3a50;
+    margin-bottom:12px;
+    font-size:13px;
+     text-align:center; /* 🔥 CENTRALIZA */
 }
 
-.destaque {
-    color: #f7c948;
-    font-weight: bold;
+.destaque{
+    color:#f7c948;
+    font-weight:bold;
 }
 
-/* GRID ESCALA + EQUIPE */
-.grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    color:#fcfafa
+/* PESQUISA */
+
+#pesquisa{
+    margin-bottom:14px;
 }
 
-@media (max-width: 380px) {
-    .grid {
-        grid-template-columns: 1fr;
-        color:#f5f0f0
+/* DIA */
+
+.dia-titulo{
+    color:#f7c948;
+    font-size:15px;
+    font-weight:bold;
+    margin:18px 0 10px;
+}
+
+/* CARD EQUIPE */
+
+.card-equipe{
+    background:#071d2b;
+    border-radius:12px;
+    border:1px solid #1e3a50;
+    border-left:4px solid #f7c948;
+    padding:12px;
+    margin-bottom:12px;
+}
+
+/* TOPO */
+
+.card-topo{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #1e3a50;
+    padding-bottom:8px;
+    margin-bottom:8px;
+}
+
+.card-topo strong{
+    color:#f7c948;
+    font-size:14px;
+}
+
+.card-topo span{
+    color:#9fb3c8;
+    font-size:11px;
+}
+
+/* INFO */
+
+.card-info{
+    font-size:12px;
+    color:#dce6ee;
+    margin-bottom:6px;
+}
+
+/* POLICIAIS */
+
+.militar-linha{
+    display:flex;
+    justify-content:space-between;
+    padding:8px 0;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    font-size:12px;
+}
+
+.militar-linha:last-child{
+    border-bottom:none;
+}
+
+/* MAPS */
+
+.btn-rota{
+    margin-top:10px;
+    background:transparent;
+    border:1px solid #f7c948;
+    color:#f7c948;
+}
+
+/* UTILIDADES */
+
+.utilidades{
+    margin-top:18px;
+}
+
+.util-title{
+    text-align:center;
+    color:#f7c948;
+    font-weight:bold;
+    margin-bottom:10px;
+    font-size:13px;
+}
+
+.grid-utils{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+}
+
+.btn-util{
+    background:#071d2b;
+    border:1px solid #1e3a50;
+    border-radius:10px;
+    padding:12px;
+    text-align:center;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.alerta{
+    margin-top:12px;
+    background:rgba(247,201,72,0.08);
+    border:1px solid #f7c948;
+    padding:10px;
+    border-radius:10px;
+    text-align:center;
+    color:#f7c948;
+    font-size:12px;
+}
+
+.footer{
+    text-align:center;
+    margin-top:14px;
+    color:#8aa0b5;
+    font-size:11px;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .container{
+        padding:14px;
     }
+
+    .grid-utils{
+        grid-template-columns:1fr;
+    }
+
+    .card-topo{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:4px;
+    }
+
 }
 
-/* BOX */
-.box {
-    background: #071d2b;
-    border-radius: 10px;
-    border: 1px solid #1e3a50;
-    padding: 8px;
-}
-
-/* LINHAS */
-.linha {
-    display: flex;
-    justify-content: space-between;
-    padding: 6px 0;
-    font-size: 12px;
-    border-bottom: 1px solid #1e3a50;
-}
-
-.linha:last-child {
-    border-bottom: none;
-}
-
-.linha span {
-    color: #9fb3c8;
-}
-
-.linha strong {
-    color: #fff;
-}
-
-/* MAPA */
-#mapa {
-    height: 180px;
-    margin-top: 10px;
-    border-radius: 10px;
-}
-
-/* BOTÃO RESET */
-.reset {
-    margin-top: 10px;
-    padding: 10px;
-    background: transparent;
-    border: 1px solid #f7c948;
-    color: #f7c948;
-    border-radius: 8px;
-}
-
-/* FOOTER */
-.footer {
-    text-align: center;
-    font-size: 11px;
-    margin-top: 10px;
-    color: #8aa0b5;
-}
-.btn-mapa {
-    margin-top: 6px;
-    width: 100%;
-    padding: 8px;
-    font-size: 12px;
-    background: rgba(255,255,255,0.08);
-    color: #f7c948;
-    border: 1px solid #f7c948;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.btn-mapa:hover {
-    background: rgba(247,201,72,0.15);
-}
 </style>
 </head>
 
 <body>
 
 <div class="overlay">
+
 <div class="container">
 
     <div class="header">
+
+        <div class="logos">
+            <img src="brasao_cpr1.png">
+            <img src="brasao_pmrn.png">
+        </div>
+
         <h1>MCJ 2026</h1>
-        <p>Consulta de Escala Operacional</p>
+        <p>Painel Operacional de Equipes</p>
+
     </div>
+
+    <div id="loginArea">
 
     <label>Primeiro Nome</label>
     <input type="text" id="nome">
@@ -371,207 +468,568 @@ button {
     <label>Matrícula</label>
     <input type="text" id="matricula">
 
-    <button onclick="consultar()">CONSULTAR</button>
+    <button onclick="consultar()">
+        ACESSAR PAINEL
+    </button>
+<!-- UTILIDADES LOGIN -->
 
-    <div class="resultado" id="resultado">
+<div class="utilidades login-utils">
 
-        <div class="status">✔ ESCALA ENCONTRADA</div>
-
-        <div class="militar-card" id="militarInfo"></div>
-
-        <div class="grid">
-
-            <!-- ESCALA -->
-            <div class="box" id="escalaBox"></div>
-
-            <!-- EQUIPE -->
-            <div class="box" id="equipeBox"></div>
-
-        </div>
-
-        <!-- MAPA EMBAIXO -->
-        <div id="mapa"></div>
-<button class="btn-mapa" onclick="abrirNoMaps()">
-    📍 Rota no Google Maps
-</button>
-        <button class="reset" onclick="resetar()">NOVA CONSULTA</button>
-
+    <div class="util-title">
+        INFORMAÇÕES ÚTEIS
     </div>
-    
-<div class="utilidades">
-
-<div class="util-title">INFORMAÇÕES ÚTEIS</div>
 
     <div class="grid-utils">
 
         <div class="btn-util" onclick="ligar190()">
-            📞 Acionar COPOM<br>
+            📞 COPOM<br>
             <small>190</small>
         </div>
 
-        <div class="btn-util" onclick="abrirMapa('-5.1870,-37.3440')">
-            📄 Local Lavratura de TCO PM<br>
-            <small>NPJ Mossoró</small>
+        <div class="btn-util" onclick="abrirMapa('-5.191748954375023, -37.34695838463607')">
+            📄 Local Lavratura TCO
         </div>
 
-        <div class="btn-util" onclick="abrirMapa('-5.1860,-37.3435')">
-            🚔 Local Base de Apoio PM<br>
-            <small>Praça Rio Branco</small>
+        <div class="btn-util" onclick="abrirMapa('-5.1940421067111275, -37.348519859350034')">
+            🚔 Base de Apoio - Pingo
         </div>
 
         <div class="btn-util" onclick="abrirDrive()">
-            🗺️ Mapa do Evento - Portões<br>
-            <small>Abrir no Drive</small>
+            🗺️ Mapa Evento 
         </div>
 
     </div>
 
-    <div class="alerta">
-        ⚠️ LEMBRETE: Registrar as equipes no SINESP antes do serviço
+</div>
+</div>
+
+    <div class="resultado" id="resultado">
+
+        <div class="status">
+            ✔ ACESSO OPERACIONAL LIBERADO
+        </div>
+<div id="diasBotoes" class="dias-container"></div>
+<div id="polosBotoes" class="polos-container"></div>
+        <div class="militar-card" id="militarInfo"></div>
+
+        <input
+            type="text"
+            id="pesquisa"
+            placeholder="Pesquisar policial, equipe, local, data..."
+            onkeyup="filtrarCards()"
+        >
+
+        <div id="painelCards"></div>
+
+        <!-- UTILIDADES -->
+
+        <div class="utilidades">
+
+            <div class="util-title">
+                INFORMAÇÕES ÚTEIS
+            </div>
+
+            <div class="grid-utils">
+
+                <div class="btn-util" onclick="ligar190()">
+                    📞 COPOM<br>
+                    <small>190</small>
+                </div>
+
+                <div class="btn-util" onclick="abrirMapa('-5.191735422726751, -37.34696712058377')">
+                    📄 Lavratura TCO
+                </div>
+
+                <div class="btn-util" onclick="abrirMapa('-5.1860,-37.3435')">
+                    🚔 Base de Apoio
+                </div>
+
+                <div class="btn-util" onclick="abrirDrive()">
+                    🗺️ Mapa Evento
+                </div>
+
+            </div>
+
+            <div class="alerta">
+                ⚠️ Registrar equipes no SINESP antes do serviço
+            </div>
+
+            <div class="footer">
+                3ª Seção - 2º BPM
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="footer">
-        Em caso de dúvida, procurar a 3ª Seção do 2º BPM.
-    </div>
-
 </div>
 
 </div>
-
-</div>
-
+<button class="btn-sair" onclick="sairSistema()">
+    SAIR DO PAINEL
+</button>
 <script>
-function ligar190() {
-    window.location.href = "tel:190";
-}
 
-function abrirMapa(coords) {
-    window.open(`https://www.google.com/maps?q=${coords}`);
-}
-
-function abrirDrive() {
-    window.open("COLOQUE_AQUI_SEU_LINK_DO_DRIVE");
-}
-function abrirNoMaps() {
-    if (!destinoLat || !destinoLng) {
-        alert("Localização não disponível.");
-        return;
-    }
-
-    window.open(`https://www.google.com/maps/dir/?api=1&destination=${destinoLat},${destinoLng}`);
-}
-let mapa;
 let banco = [];
 
-function carregarMapa(lat, lng, local) {
+async function carregarCSV(){
 
-    if (mapa) mapa.remove();
+    try{
 
-    mapa = L.map('mapa');
+        const response = await fetch("dados.csv");
 
-    const ponto = [lat, lng];
+        const texto = await response.text();
 
-    mapa.setView(ponto, 15); // ajuste de zoom automático melhor
+        const linhas = texto.trim().split(/\r?\n/);
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap & Carto'
-}).addTo(mapa);
+        banco = linhas.slice(1).map(linha => {
 
-    L.marker(ponto)
-        .addTo(mapa)
-        .bindPopup(local)
-        .openPopup();
-}
+            const separador = linha.includes(";") ? ";" : ",";
 
-async function carregarCSV() {
-    const response = await fetch("dados.csv");
-    const texto = await response.text();
+const c = linha.split(separador);
 
-    const linhas = texto.split(/\r?\n/).slice(1);
+            return{
 
-    banco = linhas
-        .filter(linha => linha.trim() !== "")
-        .map(linha => {
-            const colunas = linha.split(",");
+    graduacao:c[0]?.trim(),
+nome:c[1]?.trim().toLowerCase(),
+matricula:c[2]?.trim(),
+    patrulha:c[3]?.trim(),
+    unidade:c[4]?.trim(),
+    local:c[5]?.trim(),
+    posto:c[6]?.trim(),
+    dia:c[7]?.trim(),
+    horario:c[8]?.trim(),
+    turno:c[9]?.trim(),
+    lat:parseFloat(c[10]),
+    lng:parseFloat(c[11])
 
-            return {
-                nome: colunas[0].trim().toLowerCase(),
-                graduacao: colunas[1].trim(),
-                matricula: colunas[2].trim(),
-                local: colunas[3].trim(),
-                horario: colunas[4].trim(),
-                data: colunas[5].trim(),
-                modalidade: colunas[6].trim(),
-                equipe: colunas[7].trim(),
-                lat: parseFloat(colunas[8]),
-                lng: parseFloat(colunas[9])
-            };
+};
         });
-}
-function mascararMatricula(matricula) {
-    // Ex: 10001-1 → 10***-* 
-    return matricula.replace(/\d(?=\d{2}-\d)/g, "*");
-}
-function consultar() {
 
-    const nome = document.getElementById("nome").value.toLowerCase().trim();
-    const matricula = document.getElementById("matricula").value.trim();
+        criarBotoesDias();
+        criarBotoesPolos();
 
-    const militar = banco.find(p =>
-    p.nome === nome && p.matricula === matricula
-);
-
-    if (!militar) {
-        alert("Dados não encontrados.");
-        return;
     }
 
-    document.getElementById("resultado").style.display = "block";
+    catch(erro){
 
-    document.getElementById("militarInfo").innerHTML = `
-    <strong>${militar.graduacao} ${militar.nome.toUpperCase()}</strong><br>
-    Matrícula: <span class="destaque">${mascararMatricula(militar.matricula)}</span><br>
-    Equipe: <span class="destaque">${militar.equipe}</span>
-    `;
+        console.error("Erro CSV:", erro);
 
-    // ESCALA
-    document.getElementById("escalaBox").innerHTML = `
-        <div class="linha"><span>LOCAL</span><strong>${militar.local}</strong></div>
-        <div class="linha"><span>HORÁRIO</span><strong class="destaque">${militar.horario}</strong></div>
-        <div class="linha"><span>DATA</span><strong>${militar.data}</strong></div>
-        <div class="linha"><span>MODALIDADE</span><strong>${militar.modalidade}</strong></div>
-    `;
+    }
+}
+function mascararNome(nome){
 
-    // EQUIPE
-    const equipe = banco.filter(p =>
-        p.equipe === militar.equipe &&
-        p.local === militar.local &&
-        p.data === militar.data &&
-        p.horario === militar.horario
-    );
+    if(!nome) return "";
 
-    let equipeHTML = `<div class="linha"><strong>EQUIPE - ${militar.equipe}</strong></div>`;
+    const partes = nome
+        .trim()
+        .toUpperCase()
+        .split(" ");
 
-    equipe.forEach(p => {
-        equipeHTML += `
-            <div class="linha">
-                <span>${p.nome.toUpperCase()}</span>
-                <strong>${mascararMatricula(p.matricula)}</strong>
-            </div>
-        `;
-    });
+    // nome único
+    if(partes.length === 1){
 
-    document.getElementById("equipeBox").innerHTML = equipeHTML;
+        return partes[0];
 
-    carregarMapa(militar.lat, militar.lng, militar.local);
-destinoLat = militar.lat;
-destinoLng = militar.lng;
+    }
+
+    // segundo nome vira inicial
+    partes[1] = partes[1][0] + ".";
+
+    return partes.join(" ");
+
 }
 
-function resetar() {
-    document.getElementById("resultado").style.display = "none";
-    document.getElementById("nome").value = "";
-    document.getElementById("matricula").value = "";
+
+function mascararMatricula(matricula){
+
+    if(!matricula) return "";
+
+    const limpa = matricula.replace(/\D/g, "");
+
+    if(limpa.length < 5){
+        return matricula;
+    }
+
+    return `
+        ${limpa.substring(0,2)}***-${limpa.slice(-1)}
+    `;
+
+}
+
+
+function consultar(){
+
+    const nome = document
+        .getElementById("nome")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const matricula = document
+        .getElementById("matricula")
+        .value
+        .trim();
+
+    // procura no banco CSV
+const militar = banco.find(p =>
+
+    p.nome === nome &&
+    p.matricula === matricula
+
+);
+
+if(!militar){
+
+    alert("Dados não encontrados.");
+    return;
+
+}
+
+/* 🔥 AGORA PUXA TODA EQUIPE */
+
+const equipeCompleta = banco.filter(p =>
+
+    p.patrulha === militar.patrulha &&
+    p.local === militar.local &&
+    p.posto === militar.posto &&
+    p.turno === militar.turno &&
+    p.dia === militar.dia
+
+);
+
+
+    // libera painel
+    document.getElementById("resultado")
+        .style.display = "block";
+document.getElementById("loginArea")
+    .style.display = "none";
+    // mostra militar logado
+    document.getElementById("militarInfo")
+        .innerHTML = `
+
+            <strong>
+                ${militar.graduacao}
+                ${mascararNome(militar.nome)}
+            </strong>
+
+            <br>
+
+            Matrícula:
+            <span class="destaque">
+                ${mascararMatricula(militar.matricula)}
+            </span>
+
+        `;
+
+    // carrega painel geral
+    carregarCards(banco);
+
+    // opcional → rolar pra painel
+    document.getElementById("resultado")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+function criarBotoesDias(){
+
+    const diasUnicos = [...new Set(banco.map(p => p.dia))];
+
+    const area = document.getElementById("diasBotoes");
+
+    area.innerHTML = "";
+
+    diasUnicos.forEach(dia => {
+
+        area.innerHTML += `
+
+            <button
+                class="btn-dia"
+                onclick="filtrarDia('${dia}')"
+            >
+                Dia<br>${dia.split("/")[0]}
+            </button>
+
+        `;
+
+    });
+
+}
+function criarBotoesPolos(){
+
+    const polosUnicos =
+        [...new Set(banco.map(p => p.local))];
+
+    const area =
+        document.getElementById("polosBotoes");
+
+    area.innerHTML = "";
+
+    area.innerHTML += `
+
+        <button
+            class="btn-polo"
+            onclick="carregarCards(banco)"
+        >
+            TODOS
+        </button>
+
+    `;
+
+    polosUnicos.forEach(polo => {
+
+        area.innerHTML += `
+
+            <button
+                class="btn-polo"
+                onclick="filtrarPolo('${polo}')"
+            >
+                ${polo}
+            </button>
+
+        `;
+
+    });
+
+}
+function filtrarPolo(polo){
+
+    const filtrados = banco.filter(p =>
+
+        p.local === polo
+
+    );
+
+    carregarCards(filtrados);
+
+}
+function filtrarDia(dia){
+
+    const filtrados = banco.filter(p => p.dia === dia);
+
+    carregarCards(filtrados);
+
+}
+
+function carregarCards(dados){
+
+    const painel = document.getElementById("painelCards");
+
+    painel.innerHTML = "";
+
+    const grupos = {};
+
+    dados.forEach(p => {
+
+        const chave =
+            `${p.patrulha}-${p.turno}-${p.local}-${p.dia}`;
+
+        if(!grupos[chave]){
+
+            grupos[chave] = [];
+
+        }
+
+        grupos[chave].push(p);
+
+    });
+
+    Object.keys(grupos).forEach(chave => {
+
+        const grupo = grupos[chave];
+
+        const base = grupo[0];
+
+        
+let militares = "";
+
+grupo.forEach(m => {
+
+    militares += `
+
+    <div class="policial">
+
+        <div>
+            <strong>
+                ${m.graduacao}
+                ${mascararNome(m.nome)}
+            </strong>
+        </div>
+
+        <span>
+            ${mascararMatricula(m.matricula)}
+        </span>
+
+    </div>
+
+    `;
+
+});
+
+
+
+painel.innerHTML += `
+
+<div class="card-equipe">
+
+    <div class="card-header">
+
+        <div class="patrulha">
+            🚔 ${base.patrulha}
+        </div>
+
+        <div class="top-info">
+            📍 ${base.local}
+        </div>
+
+        <div class="top-info">
+            🚧 ${base.posto}
+        </div>
+
+        <div class="top-info">
+            🕒 ${base.turno}
+        </div>
+
+    </div>
+
+    <div class="info-grid">
+
+        <div class="mini-info">
+            <small>UNIDADE</small>
+            <strong>${base.unidade}</strong>
+        </div>
+
+        <div class="mini-info">
+            <small>DIA</small>
+            <strong>${base.dia}</strong>
+        </div>
+
+        <div class="mini-info">
+            <small>HORÁRIO</small>
+            <strong>${base.horario}</strong>
+        </div>
+
+    </div>
+
+    ${militares}
+
+    <button
+        class="btn-rota"
+        onclick="abrirMapsEquipe(${base.lat}, ${base.lng})"
+    >
+        📍 IR PARA LOCAL
+    </button>
+
+</div>
+`;
+
+
+
+    });
+
+}
+
+function filtrarCards(){
+
+    const termo = document
+        .getElementById("pesquisa")
+        .value
+        .trim()
+        .toLowerCase();
+
+const encontrados = banco.filter(p =>
+
+    p.nome?.toLowerCase().includes(termo) ||
+    p.graduacao?.toLowerCase().includes(termo) ||
+    p.matricula?.includes(termo) ||
+    p.patrulha?.toLowerCase().includes(termo) ||
+    p.unidade?.toLowerCase().includes(termo) ||
+    p.local?.toLowerCase().includes(termo) ||
+    p.posto?.toLowerCase().includes(termo) ||
+    p.turno?.toLowerCase().includes(termo) ||
+    p.dia?.toLowerCase().includes(termo) ||
+    p.horario?.toLowerCase().includes(termo) 
+    
+
+);
+
+/* 🔥 PEGA AS PATRULHAS */
+
+const patrulhas = new Set();
+
+encontrados.forEach(p => {
+
+    patrulhas.add(
+        `${p.patrulha}-${p.dia}`
+    );
+
+});
+
+/* 🔥 TRAZ A EQUIPE COMPLETA */
+
+const filtrados = banco.filter(p =>
+
+    patrulhas.has(
+        `${p.patrulha}-${p.dia}`
+    )
+
+);
+
+
+    carregarCards(filtrados);
+
+}
+
+function abrirMapsEquipe(lat,lng){
+
+    window.open(
+        `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`
+    );
+
+}
+
+function ligar190(){
+
+    window.location.href = "tel:190";
+
+}
+
+function abrirMapa(coords){
+
+    window.open(
+        `https://www.google.com/maps?q=${coords}`
+    );
+
+}
+
+function abrirDrive(){
+
+    window.open("https://drive.google.com/drive/folders/1j99uXW5EMqbXUpR2CF8VZAP1g39-PYsu?usp=drive_link");
+
+}
+function sairSistema(){
+
+    document.getElementById("resultado")
+        .style.display = "none";
+
+    document.getElementById("nome")
+        .value = "";
+
+    document.getElementById("matricula")
+        .value = "";
+
+    document.getElementById("pesquisa")
+        .value = "";
+document.getElementById("loginArea")
+    .style.display = "block";
+    window.scrollTo({
+
+        top:0,
+        behavior:"smooth"
+
+    });
+
 }
 
 carregarCSV();
