@@ -576,7 +576,7 @@ async function carregarCSV(){
 
     try{
 
-        const response = await fetch("dados.csv");
+        const response = await fetch("pingo.csv");
 
         const texto = await response.text();
 
@@ -600,8 +600,7 @@ matricula:c[2]?.trim(),
     dia:c[7]?.trim(),
     horario:c[8]?.trim(),
     turno:c[9]?.trim(),
-    lat:parseFloat(c[10]),
-    lng:parseFloat(c[11])
+     link_maps:c[10]?.trim()   
 
 };
         });
@@ -812,7 +811,7 @@ function filtrarDia(dia){
 
 }
 
-function carregarCards(dados){
+function carregarCards(pingo){
 
     const painel = document.getElementById("painelCards");
 
@@ -820,7 +819,7 @@ function carregarCards(dados){
 
     const grupos = {};
 
-    dados.forEach(p => {
+    pingo.forEach(p => {
 
         const chave =
             `${p.patrulha}-${p.turno}-${p.local}-${p.dia}`;
@@ -914,12 +913,7 @@ painel.innerHTML += `
 
     ${militares}
 
-    <button
-        class="btn-rota"
-        onclick="abrirMapsEquipe(${base.lat}, ${base.lng})"
-    >
-        📍 IR PARA LOCAL
-    </button>
+    <button class="btn-rota" onclick="abrirMapsEquipe('${base.link_maps}')" > 📍 IR PARA LOCAL </button>
 
 </div>
 `;
@@ -981,10 +975,7 @@ const filtrados = banco.filter(p =>
 
 }
 
-function abrirMapsEquipe(lat,lng){
-
-    window.open(
-        `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}`
+function abrirMapsEquipe(link_maps){ window.open( link_maps, "_blank"
     );
 
 }
