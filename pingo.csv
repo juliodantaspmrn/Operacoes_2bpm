@@ -1,0 +1,120 @@
+graduacao;nome;matricula;patrulha;unidade;local;posto;dia;horario;turno;link_maps
+SD PM;JOAO MARIA;1010;VIATURA FT;CPRI;PINGO DA MEI DIA;PORTÃO 01 - RUA NÍSIA FLORESTA;12.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/XikhmWy3Ntcevoah7
+1º Sgt PM;Leonardo José de Lima;123.281-9;PATRULHA 001;3ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 1 - Rua Nísia Floresta ;06.06;11H ÀS 17H;TURNO A;
+2º Sgt PM;José Fagner Dantas de Paiva;195.195-5;PATRULHA 001;3ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 1 - Rua Nísia Floresta ;06.06;11H ÀS 17H;TURNO A;
+2º Sgt PM;Rosemberg Fernandes de Medeiros;194.893-8;PATRULHA 002;3ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 1 - Rua Nísia Floresta ;06.06;17H ÀS 23H;TURNO B;
+3º Sgt PM;Fernando Vale Andrade;202.076-9;PATRULHA 002;3ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 1 - Rua Nísia Floresta ;06.06;17H ÀS 23H;TURNO B;
+CB PM;Valêncio Darlan de Souza Moura;227.730-1; PATRULHA 003;3ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 2 - Rua Felipe Camarão ;06.06;11H ÀS 17H;TURNO A;
+CB PM;Júlio César Figueredo da Fonseca Machado;227.408-6; PATRULHA 003;3ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 2 - Rua Felipe Camarão ;06.06;11H ÀS 17H;TURNO A;
+CB PM;José Whashington de Santiago Oliveira Júnior (TCO);227.395-0; PATRULHA 004;3ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 2 - Rua Felipe Camarão ;06.06;17H ÀS 23H;TURNO B;
+SD PM;Wanna Martins Matos;247.096-9; PATRULHA 004;3ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 2 - Rua Felipe Camarão ;06.06;17H ÀS 23H;TURNO B;
+ST PM;Fred William de Queiroz Ribeiro;107.968-9; PATRULHA 005;3ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 3 - Frei Miguelinho ;06.06;11H ÀS 17H;TURNO A;
+1º Sgt PM;Wescley Martins de Andrade;202.188-9; PATRULHA 005;3ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 3 - Frei Miguelinho ;06.06;11H ÀS 17H;TURNO A;
+3º Sgt PM;José Anchieta de Freitas Silva;202.258-3; PATRULHA 006;3ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 3 - Frei Miguelinho ;06.06;17H ÀS 23H;TURNO B;
+Sd PM;Nágila Dalyana Costa das Neves;240-030-8; PATRULHA 006;3ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 3 - Frei Miguelinho ;06.06;17H ÀS 23H;TURNO B;
+1º Sgt PM;Luciano Lopes de Oliveira;162.695-7; PATRULHA 007;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 4 - Igreja São vicente ;06.06;11H ÀS 17H;TURNO A;
+1º Sgt PM;Antônio Ocimar Marinho Leite;114.702-1; PATRULHA 007;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 4 - Igreja São vicente ;06.06;11H ÀS 17H;TURNO A;
+1º Sgt PM;Alexandre Silva de Araújo;165.913-8; PATRULHA 008;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 4 - Igreja São vicente ;06.06;17H ÀS 23H;TURNO B;
+2º Sgt PM;Zander Silva;194.981-0; PATRULHA 008;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 4 - Igreja São vicente ;06.06;17H ÀS 23H;TURNO B;
+3º Sgt PM;Anderson Neimar Siqueira de Oliveira;201.970-1; PATRULHA 009;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 5 - Av. Augusto Severo / Av. Al. Maranhão ;06.06;11H ÀS 17H;TURNO A;
+2º Sgt PM;Edieverton Roberto Silva;202.023-8; PATRULHA 009;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 5 - Av. Augusto Severo / Av. Al. Maranhão ;06.06;11H ÀS 17H;TURNO A;
+3º Sgt PM;Carlos Leonardo Maia Tavares;207.732-9; PATRULHA 010;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 5 - Av. Augusto Severo / Av. Al. Maranhão ;06.06;17H ÀS 23H;TURNO B;
+Cb PM;Israel Mendes de Freitas;227.300-4; PATRULHA 010;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 5 - Av. Augusto Severo / Av. Al. Maranhão ;06.06;17H ÀS 23H;TURNO B;
+Cb PM;Abidan-Éber Caetano de Medeiros;226.850-7; PATRULHA 011;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 6 - Lat.  do Prédio Estação das Artes;06.06;11H ÀS 17H;TURNO A;
+Cb PM;Ives Rennan de Oliveira Aragão;227.309-8; PATRULHA 011;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 6 - Lat.  do Prédio Estação das Artes;06.06;11H ÀS 17H;TURNO A;
+Cb PM;Gabriel Solano de Almeida;239.982-2; PATRULHA 012;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 6 - Lat.  do Prédio Estação das Artes;06.06;17H ÀS 23H;TURNO B;
+Cb PM;David Vinícius Dantas Azevedo;239.841-9; PATRULHA 012;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 6 - Lat.  do Prédio Estação das Artes;06.06;17H ÀS 23H;TURNO B;
+Cb PM;Lídia Reniê Fernandes da Silva;239.921-0; PATRULHA 013;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 7 - Lat. Estação das Artes - sent. BH;06.06;11H ÀS 17H;TURNO A;
+Sd PM;Islayne Caroline Costa;240.227-0; PATRULHA 013;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 7 - Lat. Estação das Artes - sent. BH;06.06;11H ÀS 17H;TURNO A;
+Sd PM;Romildo dos Santos Silva;247.484-0; PATRULHA 014;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 7 - Lat. Estação das Artes - sent. BH;06.06;17H ÀS 23H;TURNO B;
+Sd PM;Glautierre Veríssimo de Freitas;246.836-0; PATRULHA 014;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 7 - Lat. Estação das Artes - sent. BH;06.06;17H ÀS 23H;TURNO B;
+Sd PM;João Cândido Rocha Lima;246.717-8; PATRULHA 015;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 8 -  Av. Augusto Severo / Juv. Lamartine ;06.06;11H ÀS 17H;TURNO A;
+2º Sgt PM;Joilson FIRMINO Aragão;195.694-9; PATRULHA 015;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 8 -  Av. Augusto Severo / Juv. Lamartine ;06.06;11H ÀS 17H;TURNO A;
+Cb PM;Rhuan Rodrigo TEÓFILO do Nascimento;227.626-7; PATRULHA 016;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 8 -  Av. Augusto Severo / Juv. Lamartine ;06.06;17H ÀS 23H;TURNO B;
+Cb PM;MÔNICA Leidinaria de Oliveira Costa;239.943-1; PATRULHA 016;1ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 8 -  Av. Augusto Severo / Juv. Lamartine ;06.06;17H ÀS 23H;TURNO B;
+2º SGT PM;MÁRCIO ROBERTO MEIRA BARBOSA;1658271; PATRULHA 017;2ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 9 -  Frei Miguelinho com R. Princ. Isabel ;06.06;11H ÀS 17H;TURNO A;
+2º SGT PM;MAIRON GERMANO FARIAS DE CARVALHO;1950975; PATRULHA 017;2ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 9 -  Frei Miguelinho com R. Princ. Isabel ;06.06;11H ÀS 17H;TURNO A;
+3º SGT PM;ALLAN GEORGE DE MENEZES;2019639; PATRULHA 018;2ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 9 -  Frei Miguelinho com R. Princ. Isabel ;06.06;17H ÀS 23H;TURNO B;
+CB PM;PAULO VICTOR DE SOUZA SILVA;2275660; PATRULHA 018;2ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 9 -  Frei Miguelinho com R. Princ. Isabel ;06.06;17H ÀS 23H;TURNO B;
+CB PM;VICTOR MENEZES COSTA;2277409; PATRULHA 019;2ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 10 - Final da R. Princ. Isabel com R. Nisia Flr. ;06.06;11H ÀS 17H;TURNO A;
+CB PM;JOAO BATISTA DE OLIVEIRA FERNANDES DE OLIVEIRA;2471752; PATRULHA 019;2ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 10 - Final da R. Princ. Isabel com R. Nisia Flr. ;06.06;11H ÀS 17H;TURNO A;
+ST PM;MANOEL MORAIS NETO;1114247; PATRULHA 020;2ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 10 - Final da R. Princ. Isabel com R. Nisia Flr. ;06.06;17H ÀS 23H;TURNO B;
+2º SGT PM;CLEDINILSON MORAIS DE OLIVEIRA;1673491; PATRULHA 020;2ª CPM / 2º BPM;PINGO DA MEI DIA;Portão 10 - Final da R. Princ. Isabel com R. Nisia Flr. ;06.06;17H ÀS 23H;TURNO B;
+2º SGT PM;DINARTE BATISTA DA SILVA;1673785; PATRULHA 021;2ª CPM / 2º BPM;PINGO DA MEI DIA;PRAÇA DE ESPORTES - Sentido SANTO ANTONIO ;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/w3NVesYAPYkcM5Ny6
+1º Sgt PM;Francinário de Araújo Fonseca;175.679-6; PATRULHA 021;PCS / 2º BPM;PINGO DA MEI DIA;PRAÇA DE ESPORTES - Sentido SANTO ANTONIO ;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/w3NVesYAPYkcM5Ny6
+1º Sgt PM;Fredson Medeiros de Souza;163.713-4; PATRULHA 021;PCS / 2º BPM;PINGO DA MEI DIA;PRAÇA DE ESPORTES - Sentido SANTO ANTONIO ;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/w3NVesYAPYkcM5Ny6
+1º Sgt PM;Adinael Enak Alves Pontes;163.664-2; PATRULHA 021;PCS / 2º BPM;PINGO DA MEI DIA;PRAÇA DE ESPORTES - Sentido SANTO ANTONIO ;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/w3NVesYAPYkcM5Ny6
+1º Sgt PM;Janewmar Aquino de Lacerda;166.683-5; PATRULHA 021;PCS / 2º BPM;PINGO DA MEI DIA;PRAÇA DE ESPORTES - Sentido SANTO ANTONIO ;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/w3NVesYAPYkcM5Ny6
+2º Sgt PM;Josemar dos Santos Lucena;196.239-6; PATRULHA 021;PCS / 2º BPM;PINGO DA MEI DIA;PRAÇA DE ESPORTES - Sentido SANTO ANTONIO ;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/w3NVesYAPYkcM5Ny6
+ST PM;Francisco Leandro Bezerra;167.530-3; PATRULHA 021;PCS / 2º BPM;PINGO DA MEI DIA;PRAÇA DE ESPORTES - Sentido SANTO ANTONIO ;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/w3NVesYAPYkcM5Ny6
+1º Sgt PM;Jefferson Emiliano da Silva;163.995-1; PATRULHA 022;PCS / 2º BPM;PINGO DA MEI DIA;PRAÇA DE ESPORTES - Sentido BH ;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/XikhmWy3Ntcevoah7
+1° Sgt PM;Joseías Dantas de Oliveira;108.156-0; PATRULHA 022;PCS / 2º BPM;PINGO DA MEI DIA;PRAÇA DE ESPORTES - Sentido BH ;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/XikhmWy3Ntcevoah7
+1º Sgt PM;Francisco José Nolasco Júnior;114.782-0; PATRULHA 022;PCS / 2º BPM;PINGO DA MEI DIA;PRAÇA DE ESPORTES - Sentido BH ;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/XikhmWy3Ntcevoah7
+1º Sgt PM;Raimundo Oliveira Costa;114.722-6; PATRULHA 022;PCS / 2º BPM;PINGO DA MEI DIA;PRAÇA DE ESPORTES - Sentido BH ;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/XikhmWy3Ntcevoah7
+1º Sgt PM;Ewerton Fernandes de Souza;114.707-2; PATRULHA 022;PCS / 2º BPM;PINGO DA MEI DIA;PRAÇA DE ESPORTES - Sentido BH ;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/XikhmWy3Ntcevoah7
+1º Sgt PM;César Filgueira Lopes Martins;162.675-2; PATRULHA 022;PCS / 2º BPM;PINGO DA MEI DIA;PRAÇA DE ESPORTES - Sentido BH ;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/XikhmWy3Ntcevoah7
+2º Sgt PM;João Monterosso Dantas Melo Júnior;166.717-3; PATRULHA 022;PCS / 2º BPM;PINGO DA MEI DIA;PRAÇA DE ESPORTES - Sentido BH ;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/XikhmWy3Ntcevoah7
+3º Sgt PM;José Vanderley Maia Lima;202.202-8; PATRULHA 023;PCS / 2º BPM;PINGO DA MEI DIA;Praça de Patins - Sentido BH;06.06;17H ÀS 23H;TURNO B;https://maps.app.goo.gl/m1HiNwiNggK43X3f6
+Cb PM;Ângelo Victor Pinheiro de Oliveira;226.915-5; PATRULHA 023;PCS / 2º BPM;PINGO DA MEI DIA;Praça de Patins - Sentido BH;06.06;17H ÀS 23H;TURNO B;https://maps.app.goo.gl/m1HiNwiNggK43X3f6
+SD PM;Lucas De Oliveira Silveira;247.306-2; PATRULHA 023;3ª CPM / 2º BPM;PINGO DA MEI DIA;Praça de Patins - Sentido BH;06.06;17H ÀS 23H;TURNO B;https://maps.app.goo.gl/m1HiNwiNggK43X3f6
+CB PM;Jose Jefferson Moreira Araujo;227377 2; PATRULHA 023;2ª CPM / 2º BPM;PINGO DA MEI DIA;Praça de Patins - Sentido BH;06.06;17H ÀS 23H;TURNO B;https://maps.app.goo.gl/m1HiNwiNggK43X3f6
+1º SGT PM;Suéliton Souza da Costa;1658883; PATRULHA 023;1ª CPM / 2º BPM;PINGO DA MEI DIA;Praça de Patins - Sentido BH;06.06;17H ÀS 23H;TURNO B;https://maps.app.goo.gl/m1HiNwiNggK43X3f6
+SD PM;Natanael Cardozo dos Santos;2473844; PATRULHA 023;1ª CPM / 2º BPM;PINGO DA MEI DIA;Praça de Patins - Sentido BH;06.06;17H ÀS 23H;TURNO B;https://maps.app.goo.gl/m1HiNwiNggK43X3f6
+2º Sgt PM;Pedro Moreira Júnior;166.977-0;VTR GTO;1ª CPM / 2º BPM;PINGO DA MEI DIA;ENTORNO DO EVENTO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/nJ5uUXch5KrZuy4u5
+2º Sgt PM;Jefferson Rodolpho Rabelo;176.352-0;VTR GTO;1ª CPM / 2º BPM;PINGO DA MEI DIA;ENTORNO DO EVENTO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/nJ5uUXch5KrZuy4u5
+2º Sgt PM;Aerton Bezerra de Freitas;194.889-0;VTR GTO;1ª CPM / 2º BPM;PINGO DA MEI DIA;ENTORNO DO EVENTO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/nJ5uUXch5KrZuy4u5
+Cb PM;Suzane dos Santos Barbosa;240.031-6;VTR GTO;1ª CPM / 2º BPM;PINGO DA MEI DIA;ENTORNO DO EVENTO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/nJ5uUXch5KrZuy4u5
+2º Sgt PM;Marcos Antônio Albuquerque Fontes;195.159-9;VTR FT;1ª CPM / 2º BPM;PINGO DA MEI DIA;ENTORNO DO EVENTO;06.06;17H ÀS 23H;TURNO B;https://maps.app.goo.gl/nJ5uUXch5KrZuy4u5
+3º Sgt PM;Evandro Lopes da Silva;202.052-1;VTR FT;1ª CPM / 2º BPM;PINGO DA MEI DIA;ENTORNO DO EVENTO;06.06;17H ÀS 23H;TURNO B;https://maps.app.goo.gl/nJ5uUXch5KrZuy4u5
+Cb PM;Thallyson Alex Fernandes Dantas;227.700-0;VTR FT;1ª CPM / 2º BPM;PINGO DA MEI DIA;ENTORNO DO EVENTO;06.06;17H ÀS 23H;TURNO B;https://maps.app.goo.gl/nJ5uUXch5KrZuy4u5
+Cb PM;Stéfani Lorena Jácome Oliveira Freitas;239.805-2;VTR FT;1ª CPM / 2º BPM;PINGO DA MEI DIA;ENTORNO DO EVENTO;06.06;17H ÀS 23H;TURNO B;https://maps.app.goo.gl/nJ5uUXch5KrZuy4u5
+3º Sgt PM;Carlos Alberto de Menezes Melo;202.011-4;VTR ROCAM;1ª CPM / 2º BPM;PINGO DA MEI DIA;ENTORNO DO EVENTO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/nJ5uUXch5KrZuy4u5
+Sd PM;Yuri David Menezes Alves;242.348-0;VTR ROCAM;1ª CPM / 2º BPM;PINGO DA MEI DIA;ENTORNO DO EVENTO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/nJ5uUXch5KrZuy4u5
+Cb PM;João Paulo Gomes;227.045-5;VTR ROCAM;1ª CPM / 2º BPM;PINGO DA MEI DIA;ENTORNO DO EVENTO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/nJ5uUXch5KrZuy4u5
+Sd PM;Douglas Morais Matias ;247.449-2;VTR ROCAM;1ª CPM / 2º BPM;PINGO DA MEI DIA;ENTORNO DO EVENTO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/nJ5uUXch5KrZuy4u5
+Cb PM;Herreras de França Maciel ;227.881-2;VTR ROCAM;1ª CPM / 2º BPM;PINGO DA MEI DIA;ENTORNO DO EVENTO;06.06;17H ÀS 23H;TURNO B;https://maps.app.goo.gl/nJ5uUXch5KrZuy4u5
+Sd PM;Matheus Rodrigo Oliveira dos Anjos ;247.515-4;VTR ROCAM;1ª CPM / 2º BPM;PINGO DA MEI DIA;ENTORNO DO EVENTO;06.06;17H ÀS 23H;TURNO B;https://maps.app.goo.gl/nJ5uUXch5KrZuy4u5
+Sd PM;Gilberto de Albuquerque Rodrigues Júnior;247.286-4;VTR ROCAM;1ª CPM / 2º BPM;PINGO DA MEI DIA;ENTORNO DO EVENTO;06.06;17H ÀS 23H;TURNO B;https://maps.app.goo.gl/nJ5uUXch5KrZuy4u5
+ ST PM;PEDRO SALDANHA DA SILVA ;  1627023 ; PATRULHA 026;12º BPM;PINGO DA MEI DIA;Praça de Patins - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/fCgf7LrER7LshXEi9
+ 1º Sgt PM;HOSANO SANDERSAN SARAIVA DANTAS;1757946; PATRULHA 026;12º BPM;PINGO DA MEI DIA;Praça de Patins - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/fCgf7LrER7LshXEi9
+Cb PM;GERALDO REINALDO DE OLIVEIRA JÚNIOR;2278375; PATRULHA 026;12º BPM;PINGO DA MEI DIA;Praça de Patins - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/fCgf7LrER7LshXEi9
+Cb PM FEM;PABLINA QUITÉRIA ALBANO DE OLIVEIRA;2399504; PATRULHA 026;12º BPM;PINGO DA MEI DIA;Praça de Patins - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/fCgf7LrER7LshXEi9
+1º SGT PM;JOSÉ LUCIANO ALVES DE BRITO;1667688; PATRULHA 026;12º BPM;PINGO DA MEI DIA;Praça de Patins - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/fCgf7LrER7LshXEi9
+2º SGT PM;JOÃO PAULO RODRIGUES NOGUEIRA;1952749; PATRULHA 026;12º BPM;PINGO DA MEI DIA;Praça de Patins - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/fCgf7LrER7LshXEi9
+2º SGT PM;FRANSUESSON RIVELINO ALVES DE OLIVEIRA;2021919; PATRULHA 026;12º BPM;PINGO DA MEI DIA;Praça de Patins - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/fCgf7LrER7LshXEi9
+SD PM;ADRIANA DOS REIS DOS SANTOS;2474174; PATRULHA 027;12º BPM;PINGO DA MEI DIA;Praça de Convivência - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/XYiPfMsWtFz5EniM6
+1º SGT PM;CARLOS ALBERTO COSTA DE ANDRADE;1637479; PATRULHA 027;12º BPM;PINGO DA MEI DIA;Praça de Convivência - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/XYiPfMsWtFz5EniM6
+1º SGT PM;IRINALDO ALVES BEZERRA;1657305; PATRULHA 027;12º BPM;PINGO DA MEI DIA;Praça de Convivência - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/XYiPfMsWtFz5EniM6
+3º SGT PM;ADRYANNO KARLLOS PAIVA PEREIRA;2019493; PATRULHA 027;12º BPM;PINGO DA MEI DIA;Praça de Convivência - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/XYiPfMsWtFz5EniM6
+CB PM;MORGANA SAYONARA FERREIRA VIEIRA PRAXEDES;2399440; PATRULHA 027;12º BPM;PINGO DA MEI DIA;Praça de Convivência - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/XYiPfMsWtFz5EniM6
+ST PM;MÁRCIO DOS SANTOS LÔBO;1637053; PATRULHA 027;12º BPM;PINGO DA MEI DIA;Praça de Convivência - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/XYiPfMsWtFz5EniM6
+1º SGT PM;ALEX JOSÉ DE OLIVEIRA;1081195; PATRULHA 028;12º BPM;PINGO DA MEI DIA;Praça de Convivência - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/rAFsWKs8q5YG7EgX9
+1º SGT PM;CLAUDIO SAVATIER CAMPOS CIRÍACO;1673394; PATRULHA 028;12º BPM;PINGO DA MEI DIA;Praça de Convivência - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/rAFsWKs8q5YG7EgX9
+CB PM;JEFERSON JÂNIO DE OLIVEIRA COSTA;2270080; PATRULHA 028;12º BPM;PINGO DA MEI DIA;Praça de Convivência - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/rAFsWKs8q5YG7EgX9
+ST PM;MIGUEL ÂNGELO COSTA DO NASCIMENTO;1081659; PATRULHA 028;12º BPM;PINGO DA MEI DIA;Praça de Convivência - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/rAFsWKs8q5YG7EgX9
+2º SGT PM;LEONARDO DE ARRUDA MELO;1949357; PATRULHA 028;12º BPM;PINGO DA MEI DIA;Praça de Convivência - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/rAFsWKs8q5YG7EgX9
+CB PM;IVANILSON MARTINS DA SILVA SEGUNDO;2273080; PATRULHA 029;12º BPM;PINGO DA MEI DIA;Memorial da Resistência - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/GFv3Aks9HPhnf1ZcA
+  1º Sgt PM;ANTONIO CARLOS DE LIRA;  1081225 ; PATRULHA 029;12º BPM;PINGO DA MEI DIA;Memorial da Resistência - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/GFv3Aks9HPhnf1ZcA
+SD PM;ALISSANDRA DANTAS BRITO;2465434; PATRULHA 029;12º BPM;PINGO DA MEI DIA;Memorial da Resistência - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/GFv3Aks9HPhnf1ZcA
+Cb PM;José Edson de Almeida Rocha;227.363-2; PATRULHA 029;12º BPM;PINGO DA MEI DIA;Memorial da Resistência - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/GFv3Aks9HPhnf1ZcA
+Cb PM;Francisco Rogério Vieira Tavares;227.223-7; PATRULHA 029;12º BPM;PINGO DA MEI DIA;Memorial da Resistência - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/GFv3Aks9HPhnf1ZcA
+Sd PM;FRANCISCO LUCAS GOMES DE MORAIS;2472953   ; PATRULHA 029;12º BPM;PINGO DA MEI DIA;Memorial da Resistência - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/GFv3Aks9HPhnf1ZcA
+Sd PM;Ericles de Oliveira Farias;247.136-1; PATRULHA 029;12º BPM;PINGO DA MEI DIA;Memorial da Resistência - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/GFv3Aks9HPhnf1ZcA
+SD PM;RUBENS REINALDO DE OLIVEIRA;2472201; PATRULHA 030;12º BPM;PINGO DA MEI DIA;Memorial da Resistência - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/EUyqkwjz1N5C5q9F7
+;;; PATRULHA 030;12º BPM;PINGO DA MEI DIA;Memorial da Resistência - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/EUyqkwjz1N5C5q9F7
+;;; PATRULHA 030;12º BPM;PINGO DA MEI DIA;Memorial da Resistência - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/EUyqkwjz1N5C5q9F7
+;;; PATRULHA 030;12º BPM;PINGO DA MEI DIA;Memorial da Resistência - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/EUyqkwjz1N5C5q9F7
+;;; PATRULHA 030;12º BPM;PINGO DA MEI DIA;Memorial da Resistência - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/EUyqkwjz1N5C5q9F7
+;;; PATRULHA 031;12º BPM;PINGO DA MEI DIA;Teatro Dix-Huit Rosado - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/RuUBqoFR5jL5WT566
+;;; PATRULHA 031;12º BPM;PINGO DA MEI DIA;Teatro Dix-Huit Rosado - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/RuUBqoFR5jL5WT566
+;;; PATRULHA 031;12º BPM;PINGO DA MEI DIA;Teatro Dix-Huit Rosado - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/RuUBqoFR5jL5WT566
+;;; PATRULHA 031;12º BPM;PINGO DA MEI DIA;Teatro Dix-Huit Rosado - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/RuUBqoFR5jL5WT566
+;;; PATRULHA 031;12º BPM;PINGO DA MEI DIA;Teatro Dix-Huit Rosado - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/RuUBqoFR5jL5WT566
+;;; PATRULHA 031;12º BPM;PINGO DA MEI DIA;Teatro Dix-Huit Rosado - Sentido SANTO ANTONIO;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/RuUBqoFR5jL5WT566
+;;; PATRULHA 032;12º BPM;PINGO DA MEI DIA;Teatro Dix-Huit Rosado - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/N5W47kuGb7FXULJs6
+;;; PATRULHA 032;12º BPM;PINGO DA MEI DIA;Teatro Dix-Huit Rosado - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/N5W47kuGb7FXULJs6
+;;; PATRULHA 032;12º BPM;PINGO DA MEI DIA;Teatro Dix-Huit Rosado - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/N5W47kuGb7FXULJs6
+;;; PATRULHA 032;12º BPM;PINGO DA MEI DIA;Teatro Dix-Huit Rosado - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/N5W47kuGb7FXULJs6
+;;; PATRULHA 032;12º BPM;PINGO DA MEI DIA;Teatro Dix-Huit Rosado - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/N5W47kuGb7FXULJs6
+;;; PATRULHA 032;12º BPM;PINGO DA MEI DIA;Teatro Dix-Huit Rosado - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/N5W47kuGb7FXULJs6
+;;; PATRULHA 032;12º BPM;PINGO DA MEI DIA;Teatro Dix-Huit Rosado - Sentido BH;06.06;11H ÀS 17H;TURNO A;https://maps.app.goo.gl/N5W47kuGb7FXULJs6
