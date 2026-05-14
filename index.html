@@ -8,6 +8,74 @@
 <title>MCJ 2026 - Painel Operacional</title>
 
 <style>
+.badge-setor{
+
+    display:inline-block;
+
+    margin-top:6px;
+    padding:4px 10px;
+
+    border-radius:8px;
+
+    font-size:11px;
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+    color:#fff;
+
+}
+
+/* SETOR A */
+
+.setor-a{
+
+    background:#f7c948;
+    color:#071d2b;
+
+}
+
+/* SETOR B */
+
+.setor-b{
+
+    background:#2d9cdb;
+
+}
+
+/* SETOR C */
+
+.setor-c{
+
+    background:#eb5757;
+
+}
+
+/* SETOR D */
+
+.setor-d{
+
+    background:#27ae60;
+
+}
+
+/* SETOR E */
+
+.setor-e{
+
+    background:#9b51e0;
+
+}
+
+/* OUTROS */
+
+.setor-default{
+
+    background:#555;
+
+}
+
+
     /* REMOVE BOLINHAS */
 
 ul{
@@ -616,6 +684,8 @@ matricula:c[2]?.trim(),
 
     }
 }
+function limparMatricula(m){ return m .replace(/\./g,"") .replace(/\-/g,"") .trim(); }
+
 function mascararNome(nome){
 
     if(!nome) return "";
@@ -656,6 +726,85 @@ function mascararMatricula(matricula){
 
 }
 
+function limparTexto(texto){
+
+    return texto
+        .normalize("NFD")
+
+        // remove acentos
+        .replace(/[\u0300-\u036f]/g, "")
+
+        // troca espaços invisíveis
+        .replace(/\s+/g," ")
+
+        .toLowerCase()
+        .trim();
+
+}
+
+function formatarPosto(posto){
+
+    const regex = /\((.*?)\)/;
+
+    const match = posto.match(regex);
+
+    if(!match){
+
+        return posto;
+
+    }
+
+    const setor = match[1].toUpperCase();
+
+    const nomePosto = posto
+        .replace(regex,"")
+        .trim();
+
+    let classe = "setor-default";
+
+    if(setor.includes("SETOR A")){
+
+        classe = "setor-a";
+
+    }
+
+    else if(setor.includes("SETOR B")){
+
+        classe = "setor-b";
+
+    }
+
+    else if(setor.includes("SETOR C")){
+
+        classe = "setor-c";
+
+    }
+
+    else if(setor.includes("SETOR D")){
+
+        classe = "setor-d";
+
+    }
+
+    else if(setor.includes("SETOR E")){
+
+        classe = "setor-e";
+
+    }
+
+    return `
+
+        ${nomePosto}
+
+        <span class="badge-setor ${classe}">
+            ${setor}
+        </span>
+
+    `;
+
+}
+
+
 
 function consultar(){
 
@@ -673,8 +822,24 @@ function consultar(){
     // procura no banco CSV
 const militar = banco.find(p =>
 
-    p.nome === nome &&
-    p.matricula === matricula
+    limparTexto(
+        limparTexto(p.nome)
+        .split(" ")[0]
+    )
+
+    ===
+
+    limparTexto(nome)
+
+    &&
+
+    limparMatricula(p.matricula)
+
+    ===
+
+    limparMatricula(matricula)
+
+
 
 );
 
@@ -883,7 +1048,9 @@ painel.innerHTML += `
         </div>
 
         <div class="top-info">
-            🚧 ${base.posto}
+            🚧 ${formatarPosto(base.posto)}
+
+
         </div>
 
         <div class="top-info">
