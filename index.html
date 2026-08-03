@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Dashboard de produtividade operacional" />
+    <title>Produtividade | Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <section id="accessScreen" class="access-screen" aria-labelledby="accessTitle">
+      <form id="accessForm" class="access-card">
+        <img src="assets/brasao-30-setembro.png" alt="Brasão do Batalhão 30 de Setembro" />
+        <p class="eyebrow">ACESSO RESTRITO</p>
+        <h1 id="accessTitle">Painel de produtividade</h1>
+        <p>Informe a senha para continuar.</p>
+        <label for="accessPassword">Senha</label>
+        <input id="accessPassword" type="password" autocomplete="current-password" required />
+        <p id="accessError" class="access-error" role="alert"></p>
+        <button type="submit">Acessar painel</button>
+      </form>
+    </section>
+    <main id="dashboard" class="dashboard" hidden>
+      <header class="topbar">
+        <div class="brand">
+          <img class="brand-crest" src="assets/brasao-30-setembro.png" alt="Brasão do Batalhão 30 de Setembro" />
+          <div>
+          <p class="eyebrow">PAINEL OPERACIONAL</p>
+          <h1>Produtividade</h1>
+          <p id="periodLabel" class="subtitle">Carregando período...</p>
+          </div>
+        </div>
+        <div class="filters">
+          <span class="filter-title">Período</span>
+          <div class="date-range">
+            <label for="startDate">De<input id="startDate" type="date" aria-label="Data inicial" disabled /></label>
+            <label for="endDate">Até<input id="endDate" type="date" aria-label="Data final" disabled /></label>
+          </div>
+          <label class="all-days" for="allDays">
+            <input id="allDays" type="checkbox" checked />
+            Todos os dias
+          </label>
+        </div>
+      </header>
+
+      <section id="status" class="status" role="status" aria-live="polite">Preparando dados...</section>
+
+      <section class="metrics" aria-label="Indicadores principais">
+        <article class="metric-card"><span>Carros</span><strong id="metric-carros">—</strong></article>
+        <article class="metric-card"><span>Motos</span><strong id="metric-motos">—</strong></article>
+        <article class="metric-card"><span>Armas</span><strong id="metric-armas">—</strong></article>
+        <article class="metric-card"><span>Drogas (Gramas)</span><strong id="metric-drogas">—</strong></article>
+        <article class="metric-card"><span>Prisões</span><strong id="metric-prisoes">—</strong></article>
+        <article class="metric-card"><span>Flagrantes</span><strong id="metric-flagrantes">—</strong></article>
+        <article class="metric-card"><span>TCO</span><strong id="metric-tco">—</strong></article>
+        <article class="metric-card"><span>BOC</span><strong id="metric-boc">—</strong></article>
+      </section>
+
+      <section class="charts-grid" aria-label="Gráficos">
+        <article class="panel"><div class="panel-heading"><h2>Indicadores por categoria</h2><span>Quantidade</span></div><canvas id="barChart" aria-label="Gráfico de barras das categorias" role="img"></canvas></article>
+        <article class="panel"><div class="panel-heading"><h2>Distribuição da produtividade</h2><span>Participação</span></div><canvas id="pieChart" aria-label="Gráfico de pizza da distribuição das categorias" role="img"></canvas></article>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="table-toolbar"><div><h2>Detalhamento da planilha</h2><p id="tableSummary">—</p></div><label class="search"><span class="sr-only">Pesquisar produtividade</span><input id="tableSearch" type="search" placeholder="Pesquisar categoria..." /></label></div>
+        <div class="table-wrap"><table><thead><tr><th scope="col">Produtividade</th><th scope="col" class="numeric" id="valueHeading">Valor</th></tr></thead><tbody id="tableBody"></tbody></table></div>
+      </section>
+    </main>
+
+    <!-- Substitua a URL abaixo pelo CSV publicado: Arquivo > Compartilhar > Publicar na web > CSV. -->
+    <script>
+      const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjseCMfkTNjptwps6-EtkBJTumi3hRSX-l1uz2x9iEF6GHbOyuDwcwelsNxv7lu0FuO-RSioyB3pUk/pub?gid=0&single=true&output=csv';
+      const ACCESS_PASSWORD = '2bpm30set';
+      window.DASHBOARD_CONFIG = { csvUrl: CSV_URL };
+      document.getElementById('accessForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const password = document.getElementById('accessPassword').value;
+        const error = document.getElementById('accessError');
+        if (password !== ACCESS_PASSWORD) {
+          error.textContent = 'Senha incorreta. Tente novamente.';
+          return;
+        }
+        sessionStorage.setItem('dashboardAccessGranted', 'true');
+        document.getElementById('accessScreen').hidden = true;
+        document.getElementById('dashboard').hidden = false;
+      });
+      if (sessionStorage.getItem('dashboardAccessGranted') === 'true') {
+        document.getElementById('accessScreen').hidden = true;
+        document.getElementById('dashboard').hidden = false;
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
