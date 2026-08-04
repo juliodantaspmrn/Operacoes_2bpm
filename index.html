@@ -64,6 +64,12 @@
         <article class="panel"><div class="panel-heading"><h2>Distribuição da produtividade</h2><span>Participação</span></div><canvas id="pieChart" aria-label="Gráfico de pizza da distribuição das categorias" role="img"></canvas></article>
       </section>
 
+      <section class="detail-charts" aria-label="Detalhamento operacional">
+        <article class="panel"><div class="panel-heading"><h2>Drogas apreendidas</h2><span>Gramas</span></div><canvas id="drugsChart" aria-label="Gráfico de drogas apreendidas" role="img"></canvas></article>
+        <article class="panel"><div class="panel-heading"><h2>Armas apreendidas</h2><span>Quantidade</span></div><canvas id="weaponsChart" aria-label="Gráfico de armas apreendidas" role="img"></canvas></article>
+        <article class="panel"><div class="panel-heading"><h2>Modalidades de prisão</h2><span>Quantidade</span></div><canvas id="prisonsChart" aria-label="Gráfico das modalidades de prisão" role="img"></canvas></article>
+      </section>
+
       <section class="panel table-panel">
         <div class="table-toolbar"><div><h2>Detalhamento da planilha</h2><p id="tableSummary">—</p></div><label class="search"><span class="sr-only">Pesquisar produtividade</span><input id="tableSearch" type="search" placeholder="Pesquisar categoria..." /></label></div>
         <div class="table-wrap"><table><thead><tr><th scope="col">Produtividade</th><th scope="col" class="numeric" id="valueHeading">Valor</th></tr></thead><tbody id="tableBody"></tbody></table></div>
